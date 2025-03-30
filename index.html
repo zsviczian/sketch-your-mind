@@ -135,51 +135,220 @@
         .podcast-btn i {
             margin-right: 8px;
         }
+        .comparison-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-image {
+            max-width: 45%;
+        }
+        
+        .concept-image {
+            max-width: 95%;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .concept-image-70 {
+            max-width: 70%;
+            margin: 15px auto;
+            display: block;
+        }
+        
+        @media (max-width: 600px) {
+            .comparison-image {
+                max-width: 90%;
+            }
+        }
+        
+        .subtitle {
+            color: #FFFFFF;
+            font-style: italic;
+            font-size: 20px;
+            margin: 5px 0 15px 0;
+        }
+        
+        .divider {
+            width: 60%;
+            margin: 25px auto;
+            border: none;
+            border-top: 1px solid #1E474D;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "✦";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #13383D;
+            padding: 0 15px;
+            color: #FFC857;
+        }
+        
+        .podcast-icon {
+            width: 80px;
+            height: 80px;
+            margin: 10px auto;
+            display: block;
+        }
+        
+        .podcast-icon path {
+            fill: #FFC857;
+        }
+        
+        .invitation-icon {
+            width: 80px;
+            height: 80px;
+            margin: 10px auto;
+            display: block;
+        }
+        
+        .invitation-icon path {
+            fill: #FFC857;
+        }
+        
+        .cart-icon {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto 10px;
+            display: block;
+        }
+        
+        .cart-icon path {
+            fill: #FFA500;
+        }
+
+        .document-stack-icon {
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <img src="images/cover.png" alt="Sketch Your Mind Book Cover" class="book-cover">
         <h1>Sketch Your Mind</h1>
-        <h2>Nurture a Playful and Creative Brain</h2>
+        <div class="subtitle">Nurture a Playful and Creative Brain</div>
         <p><strong>Release Date:</strong> June 15, 2025</p>
         
-        <p><strong>Unlock Your Ideas with a Visual System That Works</strong></p>
-        <p>What if your notes could do more than just sit there? What if they could spark creativity, reveal connections, and grow with you—without the chaos of scattered sketches or the drag of endless text? <em>Sketch Your Mind</em> isn't just about drawing pretty pictures—it's about building a visual-first system to capture, connect, and use your ideas like never before.</p>
-        <p>For too long, we've been stuck thinking in straight lines—cramming ideas into bullet points, folders, or walls of words. But your brain doesn't work that way. It thrives on patterns, loops, and space. This book shows you how to tap into that natural power, combining the freedom of visual thinking with a structure that keeps everything clear and actionable. Think of it as your personal idea playground—where sketches, maps, and notes come together to make your thinking sharper, faster, and more fun.</p>
+        <hr class="divider">
         
-        <h2>Here's What You'll Get:</h2>
+        <h2>What If Your Notes Looked Like This?</h2>
+        <p>Take a look at this shop receipt. What are they selling in this store? Would you want to shop here? Do they have what you need?</p>
+        
+        <div class="comparison-images">
+            <img src="images/sym-recepit.png" alt="Picture of a shop receipt" class="comparison-image">
+        </div>
+        
+        <p>Now take a look at this photo of the shop window. Ask yourself the same questions.</p>
+        
+        <div class="comparison-images">
+            <img src="images/sym-grocery-store.jpg" alt="Picture of a shop window" class="comparison-image">
+        </div>
+        
+        <p>What's the difference?</p>
+        
+        <p>The shop window gives you an instant understanding of what's inside: fresh oranges, jars of preserves, rows of bottled juices, and bundles of leafy greens. The receipt breaks everything down into dry, linear data.</p>
+        
+        <p><strong>Text is like the receipt. Visuals are like the shop window.</strong></p>
+        
+        <p>We spend most of our time reading receipts.</p>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 682.7 682.7" class="document-stack-icon">
+            <defs>
+                <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                    <path d="M0 512h512V0H0Z" data-original="#000000"/>
+                </clipPath>
+            </defs>
+            <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="15" clip-path="url(#a)" transform="matrix(1.3 0 0 -1.3 0 683)">
+                <path d="m0 0-55 152c-1 3 1 6 3 7l90 30m290-297-175-63-76-27c-3-1-6 0-7 3L12-32" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(62 208)"/>
+                <path d="m0 0-181-31-81-14c-3 0-5 2-6 4l-29 173-33 191a5 5 0 0 0 4 6l92 15" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(425 107)"/>
+                <path d="M0 0v202a5 5 0 0 0 5 5h242c2 0 3-1 5-3l59-56 3-4v-327c0-3-3-5-6-5H5c-3 0-5 2-5 5v148" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(191 295)"/>
+                <path d="M0 0v-53c0-12 11-11 16-11h54" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(434 502)"/>
+                <path d="M0 0h-214" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(456 393)"/>
+                <path d="M0 0h-214" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(456 340)"/>
+                <path d="M0 0h-214" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(456 286)"/>
+                <path d="M0 0h-214" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(456 233)"/>
+                <path d="M0 0h-214" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="translate(456 180)"/>
+            </g>
+        </svg>
+        
+        <h2>Unlock Your Ideas with a Visual System That Works</h2>
+        
+        <p>What if your notes could do more than just sit there? What if they could spark creativity, reveal connections, and grow with you—without the chaos of scattered sketches or the drag of endless text?</p>
+        
+        <p><em>Sketch Your Mind</em> is your guide to thinking visually, structurally, and spatially.</p>
+        
+        <img src="images/sym-system.png" alt="Shift From Visual Thinking as a Tool to As a System" class="concept-image-70">
+        
+        <p>For too long, we've crammed our thinking into bullet points and walls of words. But your brain doesn't work that way. It thrives on patterns, loops, and space.</p>
+        
+        <p>This book gives you a complete system—not just hacks or pretty diagrams—but a dynamic, reusable framework that lets sketches, maps, and notes come together to make your thinking sharper, faster, and more fun.</p>
+        
+        <h2>Think in Space, Not Just Lines</h2>
+        
+        <img src="images/sym-ambidextrous-thinker.png" alt="Become an Ambidextrous Thinker" class="concept-image">
+        
+        <p>"Ambidextrous thinking" means combining words <em>and</em> visuals—using sketches to spark clarity, text to ground ideas, and feedback loops to refine them. This isn't about artistic skill. It's about structuring thought so you can see your ideas take shape.</p>
+        
+        <h2>What You'll Learn</h2>
         <ul style="text-align: left; margin: 0 auto; max-width: 600px;">
-            <li>A beginner-friendly way to use visuals—zero drawing skills required—to make your ideas pop into focus instantly.</li>
-            <li>Tools like mind maps, idea boards, and storyboards to organize thoughts in a way that sticks.</li>
-            <li>A step-by-step system to turn one-off sketches into a connected web of knowledge you can navigate effortlessly.</li>
-            <li>The secret to blending words and visuals so your notes work harder—capturing the big picture <em>and</em> the details.</li>
-            <li>Real science on why spatial thinking boosts memory, creativity, and problem-solving (without the nerdy overload).</li>
+            <li>Use visuals—zero drawing skills required—to make ideas pop into focus instantly.</li>
+            <li>Build reusable mind maps, idea boards, and concept visuals to organize thoughts.</li>
+            <li>Turn sketches into a connected web of knowledge you can actually <em>navigate</em>.</li>
+            <li>Blend text and visuals so your notes tell a story—zoomed in and zoomed out.</li>
+            <li>Learn the brain science behind spatial thinking (without the nerdy overload).</li>
         </ul>
         
-        <h2>Why This Book Stands Out</h2>
-        <p>Zsolt Viczián—engineer, creator of Obsidian-Excalidraw, and host of Zsolt's Visual PKM YouTube channel—brings 25+ years of tinkering, teaching, and tool-building to the table. This isn't theory; it's a proven approach forged from real life. Unlike other visual thinking books that stop at doodles or mind maps, <em>Sketch Your Mind</em> gives you a complete system—one that's dynamic, reusable, and built for the way you actually think.</p>
+        <h2>Created by a Visual Thinker Who Builds Tools</h2>
+        <p>Zsolt Viczián is an engineer, creator of Obsidian-Excalidraw, and host of Zsolt's Visual PKM YouTube channel. After 25+ years of tinkering, teaching, and tool-building, he created a system that actually works—because it's how your brain wants to think.</p>
         
-        <h2>Who's It For?</h2>
-        <p><strong>Writers</strong> ready to break free from text overload and see their ideas in a new light.</p>
-        <p><strong>Sketchers</strong> who want their drawings to go beyond the page and into a living, organized system.</p>
-        <p><strong>Anyone</strong> who's ever thought, "I'm not creative enough for this"—because you don't need to be.</p>
+        <h2>Who It's For</h2>
+        <p><strong>Writers</strong> who want to break free from text overload.</p>
+        <p><strong>Sketchers</strong> who want their visuals to live and connect.</p>
+        <p><strong>Thinkers</strong> who want clarity, not more content.</p>
+        <p><strong>Everyone</strong> who's ever said, "I can't draw." (You can.)</p>
         
-        <h2>What's In It for You?</h2>
-        <p>Imagine opening your notes and instantly <em>seeing</em> how your ideas fit together—no more digging through files or staring at a blank page. Whether you're tackling a project, learning something new, or chasing a big dream, this book hands you a practical, playful way to think better. You'll capture insights faster, spot connections you'd miss otherwise, and turn messy thoughts into clear next steps.</p>
+        <h2>Ready to See the Big Picture?</h2>
+        <p>Whether you're learning something new, planning a big project, or just want a better way to think—this book gives you a playful, practical system to make your ideas tangible.</p>
         
-        <h2>Ready to Think in Space, Not Just Lines?</h2>
-        <p><em>Sketch Your Mind</em> isn't about perfection—it's about progress. Start small, play a little, and watch your ideas come alive. Once you experience this visual shift, there's no going back. Your notes—and your thinking—will never be the same.</p>
+        <p><em>Sketch Your Mind.</em><br>
+        Your notes—and your thinking—will never be the same.</p>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 499.2 499.2" class="cart-icon">
+            <path d="M407 448h15v15h-15z"/>
+            <path d="M415 412c-22 0-40 16-43 36h-95a43 43 0 0 0-6-17l-13 9a28 28 0 0 1 5 16 29 29 0 1 1-28-29 28 28 0 0 1 14 4l8-12a43 43 0 0 0-22-7c-22 0-40 16-43 36h-7c-8 0-15-4-19-11-4-6-4-14 0-21l15-25h272v-15h-22l29-173h-52l16-10-85-141-13 7 58 96-79 48h-67l-57-94a12 12 0 0 1-2-10 12 12 0 0 1 6-7l118-71 15 25 13-8-23-38-131 79c-5 3-9 8-11 14H70v15h95a27 27 0 0 0 3 9l52 86h-58l-2-20c-2-13-13-23-27-23h-6v-15H40v45h87v-15h6c6 0 11 4 12 10l3 30 6 46H85v15h71l5 43h-46v15h48l6 48-13 23H70v15h79c-2 8 0 17 4 25 7 11 18 18 32 18h7a44 44 0 0 0 85 0h95a44 44 0 1 0 43-51zM112 175H55v-15h57zm142 86-6-43h96v43h-34v15h33v43h-82l-6-43h40v-15zm104 15h74l-7 43h-67zm-15 58-1 42h-74l-5-42zm14 42 1-42h65l-7 42zm78-115h-76v-43h83zm-43-93 12 20-25 15h-45zm-228 50h69l5 43h-69zm7 58h69l6 43h-70zm77 58 5 42h-69l-6-42zm167 150a29 29 0 1 1 0-57 29 29 0 0 1 0 57z"/>
+            <path d="M227 448h15v15h-15zm-16-346 31 51 83-50-31-52zm37 30-16-25 57-35 16 26zM40 93h14v15H40z"/>
+        </svg>
         
         <a href="https://www.amazon.com/Sketch-Your-Mind-Nurture-Creative-ebook/dp/B0DZZCZPC2/" class="preorder-btn" target="_blank">Pre-Order on Amazon</a>
         
         <div class="launch-party">
             <h2>Join the Zoom Launch Party!</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" class="invitation-icon">
+                <path d="M305 421h-97a10 10 0 0 1 0-20h97a10 10 0 0 1 0 20zm30 40H178a10 10 0 0 1 0-20h157a10 10 0 0 1 0 20zM256 68c-5 0-10-4-10-10V48a10 10 0 0 1 20 0v10c0 6-4 10-10 10zm0 240c-5 0-10-5-10-10v-10a10 10 0 0 1 20 0v10c0 5-4 10-10 10zm82-206a10 10 0 0 1-7-3c-4-4-4-10 0-14l17-17a10 10 0 0 1 14 14l-17 17a10 10 0 0 1-7 3zM158 281a10 10 0 0 1-7-3c-4-4-4-10 0-14l17-17a10 10 0 0 1 14 14l-17 17a10 10 0 0 1-7 3zm223-98h-10a10 10 0 0 1 0-20h10a10 10 0 0 1 0 20zm-239 0h-11a10 10 0 0 1 0-20h11a10 10 0 0 1 0 20zm33-81a10 10 0 0 1-7-3l-17-17a10 10 0 0 1 14-14l17 17c4 4 4 10 0 14a10 10 0 0 1-7 3zm180 179a10 10 0 0 1-7-3l-17-17a10 10 0 0 1 14-14l17 17c4 4 4 10 0 14a10 10 0 0 1-7 3zm-135-35a17 17 0 0 1-17-19l4-32-22-24a17 17 0 0 1-4-17 17 17 0 0 1 13-11l32-6 16-29a17 17 0 0 1 29 0l16 29 32 6a17 17 0 0 1 13 11 17 17 0 0 1-4 17l-22 24 4 32a17 17 0 0 1-7 16 17 17 0 0 1-17 2l-30-14-29 14a17 17 0 0 1-7 1zm36-36a10 10 0 0 1 5 1l28 13-4-31a10 10 0 0 1 3-8l21-23-30-6a10 10 0 0 1-7-5l-16-28-15 28a10 10 0 0 1-7 5l-31 6 22 23a10 10 0 0 1 2 8l-3 31 28-13a10 10 0 0 1 4-1z"/>
+                <path d="M468 138h-3V35c0-19-15-35-35-35H82C62 0 47 16 47 35v103h-3c-24 0-44 20-44 44v286c0 24 20 44 44 44h424c24 0 44-20 44-44v-98a10 10 0 0 0-20 0v65L365 319l127-105v66a10 10 0 0 0 20 0v-98c0-24-20-44-44-44zM67 35c0-8 6-15 15-15h348c9 0 15 7 15 15v192L281 363h-50L67 227zM20 214l127 105L20 435zm0-32c0-13 11-24 24-24h3v53l-27-23zm472 280v6c0 13-11 24-24 24H44c-13 0-24-11-24-24v-6l143-130 58 49a10 10 0 0 0 7 2h56l7-2 58-49zm-27-304h3c13 0 24 11 24 24v6l-27 23z"/>
+                <path d="M502 335c-4 0-8-3-9-7-2-4-1-8 3-11 3-3 8-3 11-1 4 3 6 7 5 11s-5 8-10 8z"/>
+            </svg>
             <p>Pre-order the book and email your receipt to <a href="mailto:launchparty@sketch-your-mind.com">launchparty@sketch-your-mind.com</a> to get invited to the exclusive Zoom launch event! I will be sharing the <em>Book on a Page</em> summary for <em>Sketch Your Mind</em>.</p>
         </div>
         
         <div class="podcast-section">
             <h2>Listen to the Book Launch Podcast</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" class="podcast-icon">
+                <g data-name="STATIONERY AND OFFICE">
+                    <path d="M87 393c19 48 35 79 37 83 5 6 14 10 22 9a90 90 0 0 0 18-7 92 92 0 0 0 16-9c7-5 10-15 8-22l-32-81-31-81c-4-6-13-11-21-10a93 93 0 0 0-18 4 90 90 0 0 0-18 8c-7 3-11 13-10 21 1 4 11 37 29 85zm367-85c1-8-3-18-10-21a90 90 0 0 0-18-8 93 93 0 0 0-18-4c-8-1-17 4-20 10-3 4-14 35-32 81l-32 81c-2 7 2 17 8 22a92 92 0 0 0 16 9 90 90 0 0 0 18 7c8 1 17-3 22-9 2-4 18-35 37-83s28-81 29-85z"/>
+                    <path d="M502 303v-30a19 19 0 0 0 10-17A256 256 0 0 0 75 75 254 254 0 0 0 0 256a19 19 0 0 0 10 17v30a24 24 0 0 0-9 26 975 975 0 0 0 66 170 24 24 0 1 0 43-22 927 927 0 0 1-63-161 24 24 0 0 0-19-17v-26a19 19 0 0 0 10-17 218 218 0 0 1 372-154 217 217 0 0 1 64 154 19 19 0 0 0 10 17v26a24 24 0 0 0-19 17 927 927 0 0 1-63 161 24 24 0 1 0 43 22 976 976 0 0 0 66-170 24 24 0 0 0-9-26z"/>
+                </g>
+            </svg>
             <p>Get a quick 10-minute overview of what <em>Sketch Your Mind</em> is all about!</p>
             <audio id="podcast-player" src="resources/sym-podcast.mp3" style="display: none;"></audio>
             <button class="podcast-btn" onclick="togglePodcast()">
