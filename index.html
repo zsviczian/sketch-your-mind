@@ -230,6 +230,33 @@
             margin: 20px auto;
             display: block;
         }
+
+        .amazon-store-selector {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .amazon-store-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .amazon-store-links a {
+            display: inline-block;
+            background: #1E474D;
+            color: #FFC857;
+            padding: 5px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        
+        .amazon-store-links a:hover {
+            background: #265258;
+        }
     </style>
 </head>
 <body>
@@ -329,7 +356,26 @@
             <path d="M227 448h15v15h-15zm-16-346 31 51 83-50-31-52zm37 30-16-25 57-35 16 26zM40 93h14v15H40z"/>
         </svg>
         
-        <a href="https://www.amazon.com/Sketch-Your-Mind-Nurture-Creative-ebook/dp/B0DZZCZPC2/" class="preorder-btn" target="_blank">Pre-Order on Amazon</a>
+        <a id="amazon-button" href="https://www.amazon.com/Sketch-Your-Mind-Nurture-Creative-ebook/dp/B0DZZCZPC2/" class="preorder-btn" target="_blank">Pre-Order on Amazon</a>
+        
+        <div class="amazon-store-selector">
+            <p>Or choose your Amazon store:</p>
+            <div class="amazon-store-links">
+                <a href="https://www.amazon.com/dp/B0DZZCZPC2" target="_blank">US</a>
+                <a href="https://www.amazon.co.uk/dp/B0DZZCZPC2" target="_blank">UK</a>
+                <a href="https://www.amazon.de/dp/B0DZZCZPC2" target="_blank">DE</a>
+                <a href="https://www.amazon.fr/dp/B0DZZCZPC2" target="_blank">FR</a>
+                <a href="https://www.amazon.es/dp/B0DZZCZPC2" target="_blank">ES</a>
+                <a href="https://www.amazon.it/dp/B0DZZCZPC2" target="_blank">IT</a>
+                <a href="https://www.amazon.nl/dp/B0DZZCZPC2" target="_blank">NL</a>
+                <a href="https://www.amazon.co.jp/dp/B0DZZCZPC2" target="_blank">JP</a>
+                <a href="https://www.amazon.com.br/dp/B0DZZCZPC2" target="_blank">BR</a>
+                <a href="https://www.amazon.ca/dp/B0DZZCZPC2" target="_blank">CA</a>
+                <a href="https://www.amazon.com.mx/dp/B0DZZCZPC2" target="_blank">MX</a>
+                <a href="https://www.amazon.com.au/dp/B0DZZCZPC2" target="_blank">AU</a>
+                <a href="https://www.amazon.in/dp/B0DZZCZPC2" target="_blank">IN</a>
+            </div>
+        </div>
         
         <div class="launch-party">
             <h2>Join the Zoom Launch Party!</h2>
@@ -385,6 +431,36 @@
                 icon.textContent = "🎙️";
             }
         }
+
+        // IP-based Amazon redirection
+        fetch("https://ipapi.co/json/")
+            .then(response => response.json())
+            .then(data => {
+                const countryCode = data.country_code;
+                const asin = "B0DZZCZPC2";
+                const amazonLinks = {
+                    US: "https://www.amazon.com/dp/" + asin,
+                    UK: "https://www.amazon.co.uk/dp/" + asin,
+                    DE: "https://www.amazon.de/dp/" + asin,
+                    FR: "https://www.amazon.fr/dp/" + asin,
+                    ES: "https://www.amazon.es/dp/" + asin,
+                    IT: "https://www.amazon.it/dp/" + asin,
+                    NL: "https://www.amazon.nl/dp/" + asin,
+                    JP: "https://www.amazon.co.jp/dp/" + asin,
+                    BR: "https://www.amazon.com.br/dp/" + asin,
+                    CA: "https://www.amazon.ca/dp/" + asin,
+                    MX: "https://www.amazon.com.mx/dp/" + asin,
+                    AU: "https://www.amazon.com.au/dp/" + asin,
+                    IN: "https://www.amazon.in/dp/" + asin,
+                };
+                const url = amazonLinks[countryCode] || amazonLinks.US;
+                document.getElementById("amazon-button").href = url;
+            })
+            .catch(error => {
+                console.error("Error detecting country:", error);
+                // Keep default US link on error
+            });
     </script>
 </body>
 </html>
+``` 
