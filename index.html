@@ -54,7 +54,22 @@
             margin-top: 20px;
         }
         .preorder-btn:hover {
-            background: #FF8700;
+            background: #FFD680;
+        }
+        .preorder-btn-small {
+            display: inline-block;
+            background: #FFC857;
+            color: #0D2B2F;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        .preorder-btn-small:hover {
+            background: #FFD680;
         }
         .launch-party {
             margin-top: 30px;
@@ -221,7 +236,7 @@
         }
         
         .cart-icon path {
-            fill: #FFA500;
+            fill: #FFC857;
         }
 
         .document-stack-icon {
@@ -265,6 +280,7 @@
         <h1>Sketch Your Mind</h1>
         <div class="subtitle">Nurture a Playful and Creative Brain</div>
         <p><strong>Release Date:</strong> June 15, 2025</p>
+        <a id="amazon-button-top" href="https://www.amazon.com/Sketch-Your-Mind-Nurture-Creative-ebook/dp/B0DZZCZPC2/" class="preorder-btn-small" target="_blank">Pre-Order on Amazon</a>
         
         <p><em>Sketch Your Mind is about visual Personal Knowledge Management.<br>It's the book I wish existed when I started my own PKM journey.</em></p>
         
@@ -291,7 +307,7 @@
         
         <p><strong>Text is like the receipt. Visuals are like the shop window.</strong></p>
         
-        <p>We spend most of our time reading receipts.</p>
+        <p>We spend most of our time creating and reading receipts.</p>
         
         <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 682.7 682.7" class="document-stack-icon">
             <defs>
@@ -461,6 +477,7 @@
                 };
                 const url = amazonLinks[countryCode] || amazonLinks.US;
                 document.getElementById("amazon-button").href = url;
+                document.getElementById("amazon-button-top").href = url;
             })
             .catch(error => {
                 console.error("Error detecting country:", error);
