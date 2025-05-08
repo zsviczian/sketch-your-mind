@@ -11,31 +11,35 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <div id="calendar"></div>
+  <div style="max-width: 950px; margin: 40px auto 0 auto; padding: 0;">
+    <img src="assets/banner-conference.png" alt="Sketch Your Mind Conference" style="display:block;max-width:900px;width:100%;margin:0 auto 24px auto;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.18);">
+    <div id="calendar"></div>
+    <div id="info-message"></div>
+  </div>
 
   <script>
       const SESSIONS = {
-          "25": {
+          "16": {
               "1": { title: "Visual Thinking Basics", presenter: "Alice Johnson" },
               "2": { title: "Mind Mapping Techniques", presenter: "Bob Smith" },
               "3": { title: "Creative Workflows", presenter: "Carol Lee" }
           },
-          "26": {
+          "17": {
               "1": { title: "Sketchnoting 101", presenter: "David Brown" },
               "2": { title: "Spatial Note-Taking", presenter: "Eve White" },
               "3": { title: "Teaching with Visuals", presenter: "Frank Green" }
           },
-          "27": {
+          "18": {
               "1": { title: "Concept Mapping", presenter: "Grace Black" },
               "2": { title: "Procreate for PKM", presenter: "Hank Blue" },
               "3": { title: "Visual PKM Tools", presenter: "Ivy Gray" }
           },
-          "28": {
+          "19": {
               "1": { title: "Excalidraw Tips", presenter: "Jack Red" },
               "2": { title: "Notion for Visuals", presenter: "Karen Yellow" },
               "3": { title: "Scrintal Workflows", presenter: "Liam Purple" }
           },
-          "29": {
+          "20": {
               "1": { title: "TLDraw for Teams", presenter: "Mia Orange" },
               "2": { title: "Napkin for Ideas", presenter: "Noah Pink" },
               "3": { title: "YouTube for Visuals", presenter: "Olivia Cyan" }
@@ -46,87 +50,84 @@
           var calendarEl = document.getElementById('calendar');
           var events = [];
 
+          // For each day, add 3 sessions only (no breaks)
           for (let day in SESSIONS) {
-              let baseDate = new Date(Date.UTC(2025, 5, parseInt(day), 17, 0, 0));
-              let sessionIndex = 1;
-
-              while (SESSIONS[day][sessionIndex]) {
-                  let session = SESSIONS[day][sessionIndex];
-                  events.push({
-                      title: `${session.title} - ${session.presenter}`,
-                      start: new Date(baseDate),
-                      end: new Date(baseDate.getTime() + 60 * 60 * 1000) // 1 hour session
-                  });
-
-                  baseDate = new Date(baseDate.getTime() + 90 * 60 * 1000); // 1 hour + 30 min break
-                  sessionIndex++;
-              }
+              const d = parseInt(day);
+              // Session 1: 16:00–17:00 UTC
+              events.push({
+                  title: `${SESSIONS[day]["1"].title} - ${SESSIONS[day]["1"].presenter}`,
+                  start: new Date(Date.UTC(2025, 5, d, 16, 0)),
+                  end: new Date(Date.UTC(2025, 5, d, 17, 0))
+              });
+              // Session 2: 17:30–18:30 UTC
+              events.push({
+                  title: `${SESSIONS[day]["2"].title} - ${SESSIONS[day]["2"].presenter}`,
+                  start: new Date(Date.UTC(2025, 5, d, 17, 30)),
+                  end: new Date(Date.UTC(2025, 5, d, 18, 30))
+              });
+              // Session 3: 19:00–20:00 UTC
+              events.push({
+                  title: `${SESSIONS[day]["3"].title} - ${SESSIONS[day]["3"].presenter}`,
+                  start: new Date(Date.UTC(2025, 5, d, 19, 0)),
+                  end: new Date(Date.UTC(2025, 5, d, 20, 0))
+              });
           }
+
+          // Calculate local slotMinTime and slotMaxTime based on UTC session times
+          // First session starts at 16:00 UTC, last session ends at 20:00 UTC
+          const localStart = luxon.DateTime.fromObject(
+              { year: 2025, month: 6, day: 16, hour: 16, minute: 0 },
+              { zone: 'utc' }
+          ).setZone(luxon.DateTime.local().zoneName);
+          const localEnd = luxon.DateTime.fromObject(
+              { year: 2025, month: 6, day: 16, hour: 20, minute: 0 },
+              { zone: 'utc' }
+          ).setZone(luxon.DateTime.local().zoneName);
 
           var calendar = new FullCalendar.Calendar(calendarEl, {
               initialView: 'timeGridWeek',
               contentHeight: 'auto',
-              timeZone: 'local', // Display in user's local time
+              timeZone: 'local',
               displayEventTime: true,
               events: events,
-              validRange: {
-                  start: '2025-06-25',
-                  end: '2025-06-30'
+              visibleRange: {
+                  start: '2025-06-16',
+                  end: '2025-06-21'
               },
+              hiddenDays: [0, 6],
               allDaySlot: false,
               slotEventOverlap: false,
+              slotMinTime: localStart.toFormat('HH:mm:ss'),
+              slotMaxTime: localEnd.toFormat('HH:mm:ss'),
+              initialDate: '2025-06-16',
               eventDidMount: function(info) {
-                  // Custom rendering for events after they're mounted
-                  if (info.event.title.includes('Break')) {
-                      info.el.classList.add('break-event');
-                  } else {
-                      const parts = info.event.title.split(' - ');
-                      info.el.innerHTML = `
-                          <div class="fc-event-time">${info.timeText}</div>
-                          <div class="session-event">
-                              <div class="session-title">${parts[0]}</div>
-                              <div class="session-presenter">${parts[1]}</div>
-                          </div>
-                      `;
-                  }
+                  // Only render session events (no breaks)
+                  const parts = info.event.title.split(' - ');
+                  info.el.innerHTML = `
+                      <div class="fc-event-time">${info.timeText}</div>
+                      <div class="session-event">
+                          <div class="session-title">${parts[0]}</div>
+                          <div class="session-presenter">${parts[1]}</div>
+                      </div>
+                  `;
               },
               headerToolbar: {
                   start: '',
                   center: 'title',
                   end: ''
               },
-              titleFormat: { year: 'numeric', month: 'long' },
+              titleFormat: { year: 'numeric', month: 'long', day: 'numeric' },
               datesSet: function(dateInfo) {
                   var titleElement = document.querySelector('.fc-toolbar-title');
                   titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title">Sketch Your Mind Conference 2025</h2>`;
               }
           });
 
-          // Add breaks to events
-          for (let day in SESSIONS) {
-              let baseDate = new Date(Date.UTC(2025, 5, parseInt(day), 18, 0, 0));
-              let sessionIndex = 1;
-
-              while (SESSIONS[day][sessionIndex] && sessionIndex < 3) {
-                  events.push({
-                      title: `Break (30 minutes)`,
-                      start: new Date(baseDate),
-                      end: new Date(baseDate.getTime() + 30 * 60 * 1000),
-                      color: '#e0e0e0'
-                  });
-                  baseDate = new Date(baseDate.getTime() + 90 * 60 * 1000); // Move to next break
-                  sessionIndex++;
-              }
-          }
-
           calendar.render();
           let localTimeZone = luxon.DateTime.local().zoneName;
-          let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone (UTC times: 17:00-21:00).<br>Sessions are 1 hour long with 30-minute breaks between them.`;
+          let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone (sessions scheduled in UTC 16:00–20:00).<br>Sessions are 1 hour long with 30-minute breaks between them.`;
           document.getElementById('info-message').innerHTML = timeZoneMessage;
       });
   </script>
-  
-  <div id="info-message"></div>
-  
 </body>
 </html>

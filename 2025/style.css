@@ -1,126 +1,187 @@
-        /* Import custom font */
-        @font-face {
-            font-family: 'Excalifont';
-            src: url('assets/Excalifont-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-          }
-          
-          /* Apply font to FullCalendar */
-          #calendar * {
-            font-family: 'Excalifont', sans-serif;
-          }
-          
-          #calendar {
-            max-width: 900px; /* or whatever width you want */
-            margin: 0 auto; /* center the calendar */
-            max-height: 900px; /* Set a fixed height */
-            overflow: hidden; /* Hide overflow */
-          }
-          
-          /* Enable word wrap for event titles in FullCalendar month view */
-          .fc-daygrid-event .fc-event-title {
-            white-space: normal;   /* Allow the title to wrap */
-            overflow: visible;     /* Display all text */
-            display: block;        /* Ensure each line wraps properly */
-            text-overflow: clip;   /* Prevent text truncation */
-          }
-          
-          /* Optionally, adjust line height and padding for better readability */
-          .fc-daygrid-event {
-            line-height: 1.2em;
-            padding: 2px 4px;
-          }
-          
-          body, #calendar-title {
-              font-family: 'Excalifont', sans-serif;
-          }
-          
-          body {
-            background-color: #FFF6F0;
-            overflow-x: hidden;
-          }
-          
-          :root {
-            --fc-event-border-color: #009999;
-            --fc-today-bg-color: #E6D2C1;
-            --fc-button-bg-color: #755941;
-            --fc-button-border-color: #755941;
-            --fc-event-bg-color: #006666;
-            --fc-event-border-color: #38ABAB;
-          }
-          
-          .fc-event-title {
-            color: #FFF6F0;
-          }
-          
-          #calendar-title {
-            text-align: center;
-            font-size: 24px;
-            margin: 20px 0;
-            font-weight: bold;
-          }
-          
-          /* Ensure title is visible and styled correctly */
-          .fc-toolbar-title {
-            text-align: center; /* Center title */
-            font-size: 20px;    /* Adjust size */
-            margin: 0;          /* Remove margin */
-          }
-          
-          #info-message {
-            text-align: center; /* Center the message */
-            margin-top: 10px; /* Space above the message */
-            font-size: 1em; /* Slightly larger font */
-          }
-          
-          /* Target the FullCalendar header toolbar */
-          .fc-header-toolbar {
-            display: flex;
-            flex-wrap: wrap; /* Ensures elements wrap on smaller screens */
-            justify-content: space-between;
-            align-items: center;
-          }
-          
-          /* Align specific chunks */
-          .fc-toolbar-chunk:nth-child(1) {
-            flex: 1;
-            text-align: left; /* Left-align the month */
-          }
-          
-          .fc-toolbar-chunk:nth-child(2) {
-            flex: 1;
-            text-align: center; /* Center-align "Cohort 11" */
-          }
-          
-          .fc-toolbar-chunk:nth-child(3) {
-            flex: 1;
-            text-align: right; /* Right-align the buttons */
-          }
-          
-          @media (max-width: 600px) {
-            /* On very small screens, reduce font sizes slightly */
-            .fc-toolbar-title {
-              font-size: 1em !important;
-            }
-            .fc-toolbar-chunk {
-              flex-basis: 100%; /* Each chunk takes full width on very small screens */
-              text-align: center; /* Center-align everything on very narrow screens */
-            }
-          }
-          
-          .fc-toolbar-title {
-            text-align: initial;
-          }
-          .calendar-title {
-            color: #009999;
-            text-align: center;
-          }
-          .fc-today-button {
-            width: 6em;
-            margin-bottom: 2px !important;
-          }
-          .fc-prev-button, .fc-next-button {
-            width: 3em;
-            margin-bottom: 2px !important;
-          }
+/* Import custom font */
+@font-face {
+    font-family: 'Excalifont';
+    src: url('assets/Excalifont-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply font to FullCalendar */
+#calendar * {
+    font-family: 'Excalifont', Arial, sans-serif;
+}
+
+body, #calendar-title {
+    font-family: 'Excalifont', Arial, sans-serif;
+}
+
+body {
+    background-color: #0D2B2F;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+#calendar {
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    background: #13383D;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    padding: 24px 12px 12px 12px;
+    /* Remove max-height and overflow for better fit */
+}
+
+.fc {
+    background: transparent;
+}
+
+.fc-toolbar-title,
+#calendar-title {
+    text-align: center;
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+    color: #FFC857;
+    letter-spacing: 1px;
+}
+
+.calendar-title {
+    color: #FFC857;
+    text-align: center;
+}
+
+#info-message {
+    text-align: center;
+    margin: 20px auto 0 auto;
+    font-size: 1.1em;
+    background: #1E474D;
+    color: #FFC857;
+    border-radius: 8px;
+    padding: 12px 20px;
+    max-width: 700px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.fc-header-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+}
+
+.fc-toolbar-chunk {
+    flex: 1;
+    text-align: center;
+}
+
+.fc-daygrid-event .fc-event-title,
+.fc-event-title {
+    white-space: normal;
+    overflow: visible;
+    display: block;
+    text-overflow: clip;
+    color: #FFF6F0;
+}
+
+.fc-daygrid-event {
+    line-height: 1.2em;
+    padding: 2px 4px;
+}
+
+.fc-event, .fc-v-event {
+    background: #006666;
+    border: 2.5px solid #FFC857;
+    border-radius: 12px;
+    color: #FFF6F0;
+    font-size: 1em; /* Decrease font size */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    margin-bottom: 6px;
+    min-height: 120px; /* Even taller rows */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Remove break-event styling since breaks will not be rendered at all */
+/* .break-event { ... } */
+
+.session-title {
+    font-weight: bold;
+    color: #FFC857;
+    font-size: 1.05em; /* Decrease font size */
+    margin-bottom: 2px;
+    text-align: center;
+    width: 100%;
+}
+
+.session-presenter {
+    color: #FFF6F0;
+    font-size: 0.95em; /* Decrease font size */
+    text-align: center;
+    width: 100%;
+}
+
+.fc-event-time {
+    color: #FFD680;
+    font-weight: bold;
+    margin-bottom: 2px;
+    text-align: center;
+    width: 100%;
+    font-size: 0.95em; /* Decrease font size */
+}
+
+.fc-today {
+    background: #1E474D !important;
+}
+
+:root {
+    --fc-event-border-color: #FFC857;
+    --fc-today-bg-color: #1E474D;
+    --fc-button-bg-color: #FFC857;
+    --fc-button-border-color: #FFC857;
+    --fc-event-bg-color: #006666;
+    --fc-event-border-color: #FFC857;
+}
+
+.fc-button, .fc-button-primary {
+    background: #FFC857 !important;
+    color: #0D2B2F !important;
+    border: none !important;
+    border-radius: 5px !important;
+    font-weight: bold;
+    box-shadow: none !important;
+}
+
+.fc-button:hover, .fc-button-primary:hover {
+    background: #FFD680 !important;
+    color: #0D2B2F !important;
+}
+
+.fc-today-button, .fc-prev-button, .fc-next-button {
+    width: 6em;
+    margin-bottom: 2px !important;
+}
+
+@media (max-width: 600px) {
+    .fc-toolbar-title {
+        font-size: 1.1em !important;
+    }
+    #calendar {
+        padding: 8px 2px 2px 2px;
+    }
+    #info-message {
+        font-size: 0.98em;
+        padding: 8px 6px;
+    }
+}
+
+/* Make time grid rows even taller */
+.fc-timegrid-slot {
+    height: 64px !important;
+    min-height: 64px !important;
+}
