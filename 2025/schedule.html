@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Thinking Workshop Timezone-Aware Calendar</title>
+    <title>Sketch Your Mind Conference 2025 Schedule</title>
     <script src='assets/rrule.min.js'></script>
     <script src='assets/fc.index.global.min.js'></script>   
-    <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
     <script src='assets/rrule.connector.min.js'></script>
     <script src='assets/luxon.min.js'></script>
     <link href="style.css" rel="stylesheet">
@@ -15,78 +14,85 @@
   <div id="calendar"></div>
 
   <script>
+      const SESSIONS = {
+          "25": {
+              "1": { title: "Visual Thinking Basics", presenter: "Alice Johnson" },
+              "2": { title: "Mind Mapping Techniques", presenter: "Bob Smith" },
+              "3": { title: "Creative Workflows", presenter: "Carol Lee" }
+          },
+          "26": {
+              "1": { title: "Sketchnoting 101", presenter: "David Brown" },
+              "2": { title: "Spatial Note-Taking", presenter: "Eve White" },
+              "3": { title: "Teaching with Visuals", presenter: "Frank Green" }
+          },
+          "27": {
+              "1": { title: "Concept Mapping", presenter: "Grace Black" },
+              "2": { title: "Procreate for PKM", presenter: "Hank Blue" },
+              "3": { title: "Visual PKM Tools", presenter: "Ivy Gray" }
+          },
+          "28": {
+              "1": { title: "Excalidraw Tips", presenter: "Jack Red" },
+              "2": { title: "Notion for Visuals", presenter: "Karen Yellow" },
+              "3": { title: "Scrintal Workflows", presenter: "Liam Purple" }
+          },
+          "29": {
+              "1": { title: "TLDraw for Teams", presenter: "Mia Orange" },
+              "2": { title: "Napkin for Ideas", presenter: "Noah Pink" },
+              "3": { title: "YouTube for Visuals", presenter: "Olivia Cyan" }
+          }
+      };
+
       document.addEventListener('DOMContentLoaded', function() {
           var calendarEl = document.getElementById('calendar');
-          var calendar = new FullCalendar.Calendar(calendarEl, {
-              initialView: 'dayGridMonth',
-              contentHeight: 'auto',
-              timeZone: 'local', 
-              displayEventTime: true,
-              events: [
-                  {
-                      title: "US, EU",
-                      rrule: {
-                          freq: "weekly",
-                          interval: 2,
-                          byweekday: "TH",
-                          dtstart: new Date(Date.UTC(2024, 9, 24, 17, 30, 0))
-                      }
-                  },
-                  {
-                      title: "APAC, EU",
-                      rrule: {
-                          freq: "weekly",
-                          interval: 2,
-                          byweekday: "FR",
-                          dtstart: new Date(Date.UTC(2024, 10, 1, 7, 0, 0)),
-                      }
-                  },
-              ],
-              validRange: {
-                  start: '2024-10-23'
-              },
-              eventDidMount: function(info) {
-                if (info.event.start && info.el) {
-                  const year = info.event.start.getFullYear();
-                  const month = info.event.start.getMonth()+1;
-                  const day = info.event.start.getDate();
-                  let hour = 0;
-                  let minute = 0;
-                  
-                  if(info.event.title === "US, EU") {
-                    hour = 18;
-                    minute = 30;
-                  } else {
-                    hour = 8;
-                    minute = 0;
-                  }
-                  const baseDate = luxon.DateTime.fromObject(
-                    { year, month, day, hour, minute },
-                    { zone: 'Europe/Budapest' }
-                  );
-                  const localDate = baseDate.setZone(luxon.DateTime.local().zoneName);
-                  const dayDifference = localDate.ordinal - baseDate.ordinal;
-                  const title = info.event.title + "<br>" + localDate.toFormat('HH:mm') +
-                    (dayDifference === 0 ? "" : ` (${dayDifference > 0 ? "+" : ""}${dayDifference}d)`);
+          var events = [];
 
-                  info.el.innerHTML=`<div class="fc-event-title fc-sticky">${title}</div>`;
-                }
-            },
+          for (let day in SESSIONS) {
+              let baseDate = new Date(Date.UTC(2025, 5, parseInt(day), 17, 0, 0));
+              let sessionIndex = 1;
+
+              while (SESSIONS[day][sessionIndex]) {
+                  let session = SESSIONS[day][sessionIndex];
+                  events.push({
+                      title: `${session.title} - ${session.presenter}`,
+                      start: new Date(baseDate),
+                      end: new Date(baseDate.getTime() + 60 * 60 * 1000) // 1 hour session
+                  });
+
+                  baseDate = new Date(baseDate.getTime() + 90 * 60 * 1000); // 1 hour + 30 min break
+                  sessionIndex++;
+              }
+          }
+
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+              initialView: 'timeGridWeek',
+              contentHeight: 'auto',
+              timeZone: 'local',
+              displayEventTime: true,
+              events: events,
+              validRange: {
+                  start: '2025-06-25',
+                  end: '2025-06-30'
+              },
+              headerToolbar: {
+                  start: '',
+                  center: 'title',
+                  end: ''
+              },
+              titleFormat: { year: 'numeric', month: 'long', day: 'numeric' },
               datesSet: function(dateInfo) {
-                  var titleElement = document.querySelectorAll('.fc-toolbar-chunk')[1];
-                  titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title" id="fc-dom-1">Office Hours</h2>`;
+                  var titleElement = document.querySelector('.fc-toolbar-title');
+                  titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title">Sketch Your Mind Conference 2025</h2>`;
               }
           });
+
           calendar.render();
           let localTimeZone = luxon.DateTime.local().zoneName;
-          let timeZoneMessage = `Times are displayed in "${
-            localTimeZone}" timezone in 24h format.<br>If (+1d) or (-1d) is displayed, it means the event is on the next or previous day in your timezone.`;
-          document.getElementById('info-message').innerHTML = `${timeZoneMessage}<br><br>
-              Sessions are 1 hour long.`;
+          let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone in 24h format.<br>Sessions are 1 hour long with 30-minute breaks.`;
+          document.getElementById('info-message').innerHTML = timeZoneMessage;
       });
   </script>
   
   <div id="info-message"></div>
   
-  </body>
-  </html>
+</body>
+</html>
