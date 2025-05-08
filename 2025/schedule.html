@@ -66,28 +66,62 @@
           var calendar = new FullCalendar.Calendar(calendarEl, {
               initialView: 'timeGridWeek',
               contentHeight: 'auto',
-              timeZone: 'local',
+              timeZone: 'local', // Display in user's local time
               displayEventTime: true,
               events: events,
               validRange: {
                   start: '2025-06-25',
                   end: '2025-06-30'
               },
+              allDaySlot: false,
+              slotEventOverlap: false,
+              eventDidMount: function(info) {
+                  // Custom rendering for events after they're mounted
+                  if (info.event.title.includes('Break')) {
+                      info.el.classList.add('break-event');
+                  } else {
+                      const parts = info.event.title.split(' - ');
+                      info.el.innerHTML = `
+                          <div class="fc-event-time">${info.timeText}</div>
+                          <div class="session-event">
+                              <div class="session-title">${parts[0]}</div>
+                              <div class="session-presenter">${parts[1]}</div>
+                          </div>
+                      `;
+                  }
+              },
               headerToolbar: {
                   start: '',
                   center: 'title',
                   end: ''
               },
-              titleFormat: { year: 'numeric', month: 'long', day: 'numeric' },
+              titleFormat: { year: 'numeric', month: 'long' },
               datesSet: function(dateInfo) {
                   var titleElement = document.querySelector('.fc-toolbar-title');
                   titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title">Sketch Your Mind Conference 2025</h2>`;
               }
           });
 
+          // Add breaks to events
+          for (let day in SESSIONS) {
+              let baseDate = new Date(Date.UTC(2025, 5, parseInt(day), 18, 0, 0));
+              let sessionIndex = 1;
+
+              while (SESSIONS[day][sessionIndex] && sessionIndex < 3) {
+                  events.push({
+                      title: `Break (30 minutes)`,
+                      start: new Date(baseDate),
+                      end: new Date(baseDate.getTime() + 30 * 60 * 1000),
+                      color: '#e0e0e0'
+                  });
+                  baseDate = new Date(baseDate.getTime() + 90 * 60 * 1000); // Move to next break
+                  sessionIndex++;
+              }
+          }
+
           calendar.render();
           let localTimeZone = luxon.DateTime.local().zoneName;
-          let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone in 24h format.<br>Sessions are 1 hour long with 30-minute breaks.`;
+          let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone (UTC times: 17:00-21:00).<br>Sessions are 1 hour long with 30-minute breaks between them.`;
           document.getElementById('info-message').innerHTML = timeZoneMessage;
       });
   </script>
