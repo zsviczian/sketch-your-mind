@@ -1,0 +1,126 @@
+        /* Import custom font */
+        @font-face {
+            font-family: 'Excalifont';
+            src: url('assets/Excalifont-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+          }
+          
+          /* Apply font to FullCalendar */
+          #calendar * {
+            font-family: 'Excalifont', sans-serif;
+          }
+          
+          #calendar {
+            max-width: 900px; /* or whatever width you want */
+            margin: 0 auto; /* center the calendar */
+            max-height: 900px; /* Set a fixed height */
+            overflow: hidden; /* Hide overflow */
+          }
+          
+          /* Enable word wrap for event titles in FullCalendar month view */
+          .fc-daygrid-event .fc-event-title {
+            white-space: normal;   /* Allow the title to wrap */
+            overflow: visible;     /* Display all text */
+            display: block;        /* Ensure each line wraps properly */
+            text-overflow: clip;   /* Prevent text truncation */
+          }
+          
+          /* Optionally, adjust line height and padding for better readability */
+          .fc-daygrid-event {
+            line-height: 1.2em;
+            padding: 2px 4px;
+          }
+          
+          body, #calendar-title {
+              font-family: 'Excalifont', sans-serif;
+          }
+          
+          body {
+            background-color: #FFF6F0;
+            overflow-x: hidden;
+          }
+          
+          :root {
+            --fc-event-border-color: #009999;
+            --fc-today-bg-color: #E6D2C1;
+            --fc-button-bg-color: #755941;
+            --fc-button-border-color: #755941;
+            --fc-event-bg-color: #006666;
+            --fc-event-border-color: #38ABAB;
+          }
+          
+          .fc-event-title {
+            color: #FFF6F0;
+          }
+          
+          #calendar-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+          }
+          
+          /* Ensure title is visible and styled correctly */
+          .fc-toolbar-title {
+            text-align: center; /* Center title */
+            font-size: 20px;    /* Adjust size */
+            margin: 0;          /* Remove margin */
+          }
+          
+          #info-message {
+            text-align: center; /* Center the message */
+            margin-top: 10px; /* Space above the message */
+            font-size: 1em; /* Slightly larger font */
+          }
+          
+          /* Target the FullCalendar header toolbar */
+          .fc-header-toolbar {
+            display: flex;
+            flex-wrap: wrap; /* Ensures elements wrap on smaller screens */
+            justify-content: space-between;
+            align-items: center;
+          }
+          
+          /* Align specific chunks */
+          .fc-toolbar-chunk:nth-child(1) {
+            flex: 1;
+            text-align: left; /* Left-align the month */
+          }
+          
+          .fc-toolbar-chunk:nth-child(2) {
+            flex: 1;
+            text-align: center; /* Center-align "Cohort 11" */
+          }
+          
+          .fc-toolbar-chunk:nth-child(3) {
+            flex: 1;
+            text-align: right; /* Right-align the buttons */
+          }
+          
+          @media (max-width: 600px) {
+            /* On very small screens, reduce font sizes slightly */
+            .fc-toolbar-title {
+              font-size: 1em !important;
+            }
+            .fc-toolbar-chunk {
+              flex-basis: 100%; /* Each chunk takes full width on very small screens */
+              text-align: center; /* Center-align everything on very narrow screens */
+            }
+          }
+          
+          .fc-toolbar-title {
+            text-align: initial;
+          }
+          .calendar-title {
+            color: #009999;
+            text-align: center;
+          }
+          .fc-today-button {
+            width: 6em;
+            margin-bottom: 2px !important;
+          }
+          .fc-prev-button, .fc-next-button {
+            width: 3em;
+            margin-bottom: 2px !important;
+          }

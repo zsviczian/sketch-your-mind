@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Thinking Workshop Timezone-Aware Calendar</title>
+    <script src='assets/rrule.min.js'></script>
+    <script src='assets/fc.index.global.min.js'></script>   
+    <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
+    <script src='assets/rrule.connector.min.js'></script>
+    <script src='assets/luxon.min.js'></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="calendar"></div>
+
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+              initialView: 'dayGridMonth',
+              contentHeight: 'auto',
+              timeZone: 'local', 
+              displayEventTime: true,
+              events: [
+                  {
+                      title: "US, EU",
+                      rrule: {
+                          freq: "weekly",
+                          interval: 2,
+                          byweekday: "TH",
+                          dtstart: new Date(Date.UTC(2024, 9, 24, 17, 30, 0))
+                      }
+                  },
+                  {
+                      title: "APAC, EU",
+                      rrule: {
+                          freq: "weekly",
+                          interval: 2,
+                          byweekday: "FR",
+                          dtstart: new Date(Date.UTC(2024, 10, 1, 7, 0, 0)),
+                      }
+                  },
+              ],
+              validRange: {
+                  start: '2024-10-23'
+              },
+              eventDidMount: function(info) {
+                if (info.event.start && info.el) {
+                  const year = info.event.start.getFullYear();
+                  const month = info.event.start.getMonth()+1;
+                  const day = info.event.start.getDate();
+                  let hour = 0;
+                  let minute = 0;
+                  
+                  if(info.event.title === "US, EU") {
+                    hour = 18;
+                    minute = 30;
+                  } else {
+                    hour = 8;
+                    minute = 0;
+                  }
+                  const baseDate = luxon.DateTime.fromObject(
+                    { year, month, day, hour, minute },
+                    { zone: 'Europe/Budapest' }
+                  );
+                  const localDate = baseDate.setZone(luxon.DateTime.local().zoneName);
+                  const dayDifference = localDate.ordinal - baseDate.ordinal;
+                  const title = info.event.title + "<br>" + localDate.toFormat('HH:mm') +
+                    (dayDifference === 0 ? "" : ` (${dayDifference > 0 ? "+" : ""}${dayDifference}d)`);
+
+                  info.el.innerHTML=`<div class="fc-event-title fc-sticky">${title}</div>`;
+                }
+            },
+              datesSet: function(dateInfo) {
+                  var titleElement = document.querySelectorAll('.fc-toolbar-chunk')[1];
+                  titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title" id="fc-dom-1">Office Hours</h2>`;
+              }
+          });
+          calendar.render();
+          let localTimeZone = luxon.DateTime.local().zoneName;
+          let timeZoneMessage = `Times are displayed in "${
+            localTimeZone}" timezone in 24h format.<br>If (+1d) or (-1d) is displayed, it means the event is on the next or previous day in your timezone.`;
+          document.getElementById('info-message').innerHTML = `${timeZoneMessage}<br><br>
+              Sessions are 1 hour long.`;
+      });
+  </script>
+  
+  <div id="info-message"></div>
+  
+  </body>
+  </html>
