@@ -6,8 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://sketch-your-mind.com/styles/base-style.css">
     <style>
+      .download-button {
+        background:#FFC857;
+        color:#0D2B2F;
+        padding:12px 20px;
+        border-radius:6px;
+        font-weight:bold;
+        text-decoration:none;
+        font-size:16px;
+        display:inline-block;
+        
+      }
+        .preorder-btn {
+            display: inline-block;
+            background:#FFC857;
+            color: #0D2B2F;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .preorder-btn:hover,
+        .download-button:hover {
+            background:  #FFA500;
+        }        
         .amazon-store-selector {
-            margin-top: -1em;
+            margin-top: 1em;
             font-size: 14px;
         }
         
@@ -76,6 +102,15 @@
           display: flex;
           justify-content: center;
         }
+        .cart-icon {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto 10px;
+            display: block;
+        }
+        .cart-icon path {
+            fill: #FFC857;
+        }
     </style>
 </head>
 <body>
@@ -84,14 +119,23 @@
         
         <img src="https://sketch-your-mind.com/images/cover.jpg" alt="Sketch Your Mind Book Cover" style="max-width:180px; margin: 2em auto 1em; display:block; border-radius:8px;     border: 2px solid #FFC857; box-shadow: 0 0 20px rgba(255, 200, 87, 0.8);">
         <p>
-            <a href="https://sketch-your-mind.com/resources/Sketch-Your-Mind-Sample-Chapter.pdf" target="_blank" style="background:#FFC857; color:#0D2B2F; padding:12px 20px; border-radius:6px; font-weight:bold; text-decoration:none; font-size:16px; display:inline-block; margin-bottom:2em;">
+            <a href="https://sketch-your-mind.com/resources/Sketch-Your-Mind-Sample-Chapter.pdf" target="_blank" class="download-button">
                 Download Sample Chapter
             </a>
         </p>
         
+        <hr class="divider">
        
+         <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 499.2 499.2" class="cart-icon">
+            <path d="M407 448h15v15h-15z"/>
+            <path d="M415 412c-22 0-40 16-43 36h-95a43 43 0 0 0-6-17l-13 9a28 28 0 0 1 5 16 29 29 0 1 1-28-29 28 28 0 0 1 14 4l8-12a43 43 0 0 0-22-7c-22 0-40 16-43 36h-7c-8 0-15-4-19-11-4-6-4-14 0-21l15-25h272v-15h-22l29-173h-52l16-10-85-141-13 7 58 96-79 48h-67l-57-94a12 12 0 0 1-2-10 12 12 0 0 1 6-7l118-71 15 25 13-8-23-38-131 79c-5 3-9 8-11 14H70v15h95a27 27 0 0 0 3 9l52 86h-58l-2-20c-2-13-13-23-27-23h-6v-15H40v45h87v-15h6c6 0 11 4 12 10l3 30 6 46H85v15h71l5 43h-46v15h48l6 48-13 23H70v15h79c-2 8 0 17 4 25 7 11 18 18 32 18h7a44 44 0 0 0 85 0h95a44 44 0 1 0 43-51zM112 175H55v-15h57zm142 86-6-43h96v43h-34v15h33v43h-82l-6-43h40v-15zm104 15h74l-7 43h-67zm-15 58-1 42h-74l-5-42zm14 42 1-42h65l-7 42zm78-115h-76v-43h83zm-43-93 12 20-25 15h-45zm-228 50h69l5 43h-69zm7 58h69l6 43h-70zm77 58 5 42h-69l-6-42zm167 150a29 29 0 1 1 0-57 29 29 0 0 1 0 57z"/>
+            <path d="M227 448h15v15h-15zm-16-346 31 51 83-50-31-52zm37 30-16-25 57-35 16 26zM40 93h14v15H40z"/>
+        </svg>
+        
+        <a id="amazon-button" href="https://www.amazon.com/Sketch-Your-Mind-Nurture-Creative-ebook/dp/B0DZZCZPC2/" class="preorder-btn" target="_blank">Pre-Order on Amazon</a>
+        
         <div class="amazon-store-selector">
-            <p>Get your copy today on Amazon:</p>
+          
             <div class="amazon-store-links">
                 <a href="https://www.amazon.com/dp/B0DZZCZPC2" target="_blank">US</a>
                 <a href="https://www.amazon.co.uk/dp/B0DZZCZPC2" target="_blank">UK</a>
@@ -111,7 +155,7 @@
 
         <hr class="divider">
 
-        <p>Let’s keep exploring together—subscribe to get the Sketch Your Mind newsletter.</p>
+        <h1>Let’s keep exploring together</h1><p>Subscribe to get the Sketch Your Mind newsletter.</p>
 
                 <!-- KIT Newsletter -->
         <div class="kitform">
