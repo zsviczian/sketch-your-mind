@@ -1,0 +1,125 @@
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    margin: 30px 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.welcome-text {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.related-videos {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #1E474D;
+    border-radius: 8px;
+}
+
+.related-videos h2 {
+    color: #FFC857;
+    margin-bottom: 20px;
+}
+
+.video-list {
+    list-style: none;
+    padding: 0;
+}
+
+.video-list li {
+    margin-bottom: 12px;
+    padding-left: 0;
+}
+
+.video-list li:before {
+    display: none;
+}
+
+.video-list a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.video-list a:hover {
+    color: #FFC857;
+    text-decoration: underline;
+}
+
+.video-section {
+    margin-bottom: 25px;
+}
+
+.video-section h3 {
+    color: #FFC857;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.back-link {
+    display: inline-block;
+    color: #FFC857;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.seva-modal.formkit-modal.guard {
+  min-width: 30vw;
+}
+.formkit-powered-by-convertkit-container {
+  display: none !important;
+}
+.formkit-form > div{
+  padding-top:0px !important;
+}
+.kitform {
+  display: flex;
+  justify-content: center;
+}
+        .formkit-form[data-uid="8e8da252c9"] .formkit-background {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Responsive adjustments for the form columns */
+@media (max-width: 600px) {
+    .formkit-form[data-uid="8e8da252c9"] [data-style="card"] {
+        flex-direction: column;
+    }
+    
+    .formkit-form[data-uid="8e8da252c9"] .formkit-column:first-child {
+        min-height: 200px;
+        position: relative;
+    }
+    
+    .formkit-form[data-uid="8e8da252c9"] .formkit-background {
+        background-size: contain !important;
+    }
+}
