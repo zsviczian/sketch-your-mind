@@ -20,8 +20,12 @@ fetch("https://ipapi.co/json/")
             IN: "https://www.amazon.in/dp/" + asin,
         };
         const url = amazonLinks[countryCode] || amazonLinks.US;
-        document.getElementById("amazon-button").href = url;
-        document.getElementById("amazon-button-top").href = url;
+        const b1 = document.getElementById("amazon-button");
+        if(b1) b1.href = url;
+        const b2 = document.getElementById("amazon-button-top");
+        if(b2) b2.href = url;
+        const b3 = document.getElementById("amazon-button-obsidian");
+        if(b3) b3.href = url;
     })
     .catch(error => {
         console.error("Error detecting country:", error);
