@@ -173,6 +173,7 @@ img.decoration {
 .session-title a {
     /*font-weight: bold;*/
     color: #FFC857;
+    text-decoration: underline; /* underline session link */
 }
 
 .session-presenter {
@@ -186,6 +187,7 @@ img.decoration {
     color: #FFD680;
     font-weight: bold;
     margin-bottom: 2px;
+    margin-top: 6px;
     text-align: center;
     width: 100%;
     font-size: 0.9em; /* Decrease font size */
@@ -239,20 +241,8 @@ img.decoration {
         padding: 0 2em;
     }
 
-    .session-title {
-      font-size: 0.8em; /* Decrease font size */
-    }
-
     img.decoration {
       width:50%;
-    }
-
-    .session-presenter {
-        font-size: 0.7em;
-    }
-
-    .fc-event-time {
-        font-size: 0.7em; /* Decrease font size */
     }
 
     #conference-intro .intro-lead {
@@ -261,6 +251,69 @@ img.decoration {
     #conference-intro .intro-body,
     #conference-intro .intro-cta {
         font-size: 0.98em;
+    }
+
+    .fc-list-event-graphic {
+        display: none !important; /* hide the dot graphic */
+    }
+
+    /* List view (mobile) styling */
+    .fc-list, .fc-list-sticky {
+        background: transparent;
+    }
+
+    .fc .fc-list-table {
+        background: #13383D;
+        border: 0;
+    }
+
+    .fc .fc-list-day-cushion {
+        background: #1E474D;
+        color: #FFC857;
+        border: 0;
+    }
+
+    .fc .fc-list-event td {
+        border-color: rgba(255,255,255,0.08);
+    }
+
+    .fc .fc-list-event:hover td {
+        background: rgba(255,255,255,0.04);
+    }
+
+    /* Allow default time column to show (was hidden earlier) */
+    /* Also center and size it to match the session title */
+    .fc .fc-list-event-time {
+        display: block !important;        /* override previous display:none */
+        text-align: center;
+        color: #FFD680;
+        font-weight: bold;
+        font-size: 0.8em;                 /* match .session-title on mobile */
+        margin: 6px 0 4px 0;
+    }
+
+    /* Underline session link in list view */
+    .fc .fc-list-event-title a {
+        color: #FFC857;
+        text-decoration: underline;       /* override previous none */
+    }
+
+    /* Stack cells vertically and center content */
+    .fc .fc-list-event { display: block; }
+    .fc .fc-list-event td {
+        display: block;
+        width: 100%;
+        border: 0;                        /* cleaner card look */
+    }
+    .fc .fc-list-event-title { text-align: center; }
+
+    /* Remove the dot column entirely */
+    .fc .fc-list-event-dot { display: none !important; }
+
+    /* Slightly tighter list spacing on mobile */
+    .fc .fc-list-event-time,
+    .fc .fc-list-event-title {
+        font-size: 0.9em;
     }
 }
 
