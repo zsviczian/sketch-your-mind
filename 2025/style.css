@@ -23,14 +23,28 @@ body {
     min-height: 100vh;
 }
 
+img.banner {
+  display:block;
+  max-width:900px;
+  width:100%;
+  margin:0 auto 0 auto;
+  border-radius:14px;
+  box-shadow:0 2px 16px rgba(0,0,0,0.18);
+}
+
+img.decoration {
+  display:block;
+  width:35%;
+  margin:0 auto 0 auto;
+}
+
 #calendar {
     max-width: 900px;
     margin: 40px auto 0 auto;
     background: #13383D;
-    border-radius: 16px;
+    border-radius: 8px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    padding: 24px 12px 12px 12px;
-    /* Remove max-height and overflow for better fit */
+    padding: 12px;
 }
 
 .fc {
@@ -62,6 +76,44 @@ body {
     padding: 12px 20px;
     max-width: 700px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+#conference-intro {
+    text-align: center;
+    margin: 12px auto 24px auto;
+    max-width: 900px;
+    color: #FFF6F0;
+    font-size: 1em;
+    line-height: 1.5;
+    padding: 0 8em;
+}
+
+#conference-intro .accent {
+    color: #FFC857;
+}
+
+#conference-intro .intro-lead {
+    font-size: 1.15em;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    margin-bottom: 1em;
+}
+
+#conference-intro .intro-body {
+    font-size: 1em;
+    margin: 0;
+}
+
+#conference-intro .intro-body mark {
+    border-radius: 5px;
+    padding-right:0.5em;
+    padding-left:0.5em;
+    background-color: #99DEDE;
+}
+
+#conference-intro .intro-cta {
+    font-size: 1.02em;
+    margin: 10px 0 0 0;
 }
 
 .fc-header-toolbar {
@@ -113,7 +165,7 @@ body {
 .session-title {
     font-weight: bold;
     color: #FFC857;
-    font-size: 1.05em; /* Decrease font size */
+    font-size: 1em; /* Decrease font size */
     margin-bottom: 2px;
     text-align: center;
     width: 100%;
@@ -121,7 +173,7 @@ body {
 
 .session-presenter {
     color: #FFF6F0;
-    font-size: 0.95em; /* Decrease font size */
+    font-size: 0.9em; /* Decrease font size */
     text-align: center;
     width: 100%;
 }
@@ -132,7 +184,7 @@ body {
     margin-bottom: 2px;
     text-align: center;
     width: 100%;
-    font-size: 0.95em; /* Decrease font size */
+    font-size: 0.9em; /* Decrease font size */
 }
 
 .fc-today {
@@ -178,10 +230,42 @@ body {
         font-size: 0.98em;
         padding: 8px 6px;
     }
+    #conference-intro {
+        font-size: 1em;
+        padding: 0 2em;
+    }
+
+    .session-title {
+      font-size: 0.8em; /* Decrease font size */
+    }
+
+    img.decoration {
+      width:50%;
+    }
+
+    .session-presenter {
+        font-size: 0.7em;
+    }
+
+    .fc-event-time {
+        font-size: 0.7em; /* Decrease font size */
+    }
+
+    #conference-intro .intro-lead {
+        font-size: 1.05em;
+    }
+    #conference-intro .intro-body,
+    #conference-intro .intro-cta {
+        font-size: 0.98em;
+    }
 }
 
 /* Make time grid rows even taller */
 .fc-timegrid-slot {
     height: 64px !important;
     min-height: 64px !important;
+}
+
+.fc-header-toolbar.fc-toolbar {
+    display: none;
 }
