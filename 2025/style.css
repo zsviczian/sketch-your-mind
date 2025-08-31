@@ -171,7 +171,6 @@ img.decoration {
 }
 
 a {
-    /*font-weight: bold;*/
     color: #FFC857;
     text-decoration: underline; /* underline session link */
 }
