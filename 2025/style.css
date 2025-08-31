@@ -162,13 +162,17 @@ img.decoration {
 /* Remove break-event styling since breaks will not be rendered at all */
 /* .break-event { ... } */
 
+.session-title {
+  font-size: 1em; /* Decrease font size */
+  margin-bottom: 2px;
+  text-align: center;
+  width: 100%;
+  color: #FFC857;
+}
+
 .session-title a {
     /*font-weight: bold;*/
     color: #FFC857;
-    font-size: 1em; /* Decrease font size */
-    margin-bottom: 2px;
-    text-align: center;
-    width: 100%;
 }
 
 .session-presenter {
