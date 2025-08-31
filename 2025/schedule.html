@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sketch Your Mind Conference 2025 Schedule</title>
+    <title>Sketch Your Mind Conference</title>
     <script src='assets/rrule.min.js'></script>
     <script src='assets/fc.index.global.min.js'></script>   
     <script src='assets/rrule.connector.min.js'></script>
@@ -18,28 +18,57 @@
   </div>
 
   <script>
+    const CONFERENCE_START = new Date("2025-10-13T17:00:00+02:00");
+ 
+  const year   = CONFERENCE_START.getUTCFullYear();
+  const month  = CONFERENCE_START.getUTCMonth();      // 0-based (0=Jan)
+  const day    = CONFERENCE_START.getUTCDate();
+  const hour   = CONFERENCE_START.getUTCHours();
+  const minute = CONFERENCE_START.getUTCMinutes();
+    
+
+    function addDays(date, days) {
+        const newDate = new Date(date);
+        newDate.setDate(newDate.getDate() + days);
+        return newDate;
+    }
+
+    function addHours(date, hours, minutes) {
+        const newDate = new Date(date);
+        newDate.setHours(newDate.getHours() + hours);
+        newDate.setMinutes(newDate.getMinutes() + (minutes || 0));
+        return newDate;
+    }
+
+    function dateToString(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
       const SESSIONS = {
-          "16": {
-              "1": { title: "Visual Thinking Basics", presenter: "Alice Johnson" },
+          0: {
+              "1": { title: "Visual Thinking Basics", presenter: "Alice Johnson"},
               "2": { title: "Mind Mapping Techniques", presenter: "Bob Smith" },
               "3": { title: "Creative Workflows", presenter: "Carol Lee" }
           },
-          "17": {
+          1: {
               "1": { title: "Sketchnoting 101", presenter: "David Brown" },
               "2": { title: "Spatial Note-Taking", presenter: "Eve White" },
               "3": { title: "Teaching with Visuals", presenter: "Frank Green" }
           },
-          "18": {
+          2: {
               "1": { title: "Concept Mapping", presenter: "Grace Black" },
               "2": { title: "Procreate for PKM", presenter: "Hank Blue" },
               "3": { title: "Visual PKM Tools", presenter: "Ivy Gray" }
           },
-          "19": {
+          3: {
               "1": { title: "Excalidraw Tips", presenter: "Jack Red" },
               "2": { title: "Notion for Visuals", presenter: "Karen Yellow" },
               "3": { title: "Scrintal Workflows", presenter: "Liam Purple" }
           },
-          "20": {
+          4: {
               "1": { title: "TLDraw for Teams", presenter: "Mia Orange" },
               "2": { title: "Napkin for Ideas", presenter: "Noah Pink" },
               "3": { title: "YouTube for Visuals", presenter: "Olivia Cyan" }
@@ -52,35 +81,35 @@
 
           // For each day, add 3 sessions only (no breaks)
           for (let day in SESSIONS) {
-              const d = parseInt(day);
               // Session 1: 16:00–17:00 UTC
+              const confDay = addDays(CONFERENCE_START, parseInt(day, 10));
               events.push({
                   title: `${SESSIONS[day]["1"].title} - ${SESSIONS[day]["1"].presenter}`,
-                  start: new Date(Date.UTC(2025, 5, d, 16, 0)),
-                  end: new Date(Date.UTC(2025, 5, d, 17, 0))
+                  start: confDay,
+                  end: addHours(confDay, 1, 0)
               });
               // Session 2: 17:30–18:30 UTC
               events.push({
                   title: `${SESSIONS[day]["2"].title} - ${SESSIONS[day]["2"].presenter}`,
-                  start: new Date(Date.UTC(2025, 5, d, 17, 30)),
-                  end: new Date(Date.UTC(2025, 5, d, 18, 30))
+                  start: addHours(confDay, 1, 30),
+                  end: addHours(confDay, 2, 30)
               });
               // Session 3: 19:00–20:00 UTC
               events.push({
                   title: `${SESSIONS[day]["3"].title} - ${SESSIONS[day]["3"].presenter}`,
-                  start: new Date(Date.UTC(2025, 5, d, 19, 0)),
-                  end: new Date(Date.UTC(2025, 5, d, 20, 0))
+                  start: addHours(confDay, 3, 0),
+                  end: addHours(confDay, 4, 0)
               });
           }
 
           // Calculate local slotMinTime and slotMaxTime based on UTC session times
           // First session starts at 16:00 UTC, last session ends at 20:00 UTC
           const localStart = luxon.DateTime.fromObject(
-              { year: 2025, month: 6, day: 16, hour: 16, minute: 0 },
+              { year, month, day, hour, minute },
               { zone: 'utc' }
           ).setZone(luxon.DateTime.local().zoneName);
           const localEnd = luxon.DateTime.fromObject(
-              { year: 2025, month: 6, day: 16, hour: 20, minute: 0 },
+              { year, month, day, hour: hour+4, minute},
               { zone: 'utc' }
           ).setZone(luxon.DateTime.local().zoneName);
 
@@ -91,15 +120,15 @@
               displayEventTime: true,
               events: events,
               visibleRange: {
-                  start: '2025-06-16',
-                  end: '2025-06-21'
+                  start: dateToString(CONFERENCE_START),
+                  end: dateToString(addDays(CONFERENCE_START, 5))
               },
               hiddenDays: [0, 6],
               allDaySlot: false,
               slotEventOverlap: false,
               slotMinTime: localStart.toFormat('HH:mm:ss'),
               slotMaxTime: localEnd.toFormat('HH:mm:ss'),
-              initialDate: '2025-06-16',
+              initialDate: dateToString(CONFERENCE_START),
               eventDidMount: function(info) {
                   // Only render session events (no breaks)
                   const parts = info.event.title.split(' - ');
@@ -119,13 +148,13 @@
               titleFormat: { year: 'numeric', month: 'long', day: 'numeric' },
               datesSet: function(dateInfo) {
                   var titleElement = document.querySelector('.fc-toolbar-title');
-                  titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title">Sketch Your Mind Conference 2025</h2>`;
+                  titleElement.innerText = `Schedule`;
               }
           });
 
           calendar.render();
           let localTimeZone = luxon.DateTime.local().zoneName;
-          let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone (sessions scheduled in UTC 16:00–20:00).<br>Sessions are 1 hour long with 30-minute breaks between them.`;
+          let timeZoneMessage = `Times are displayed in ${localTimeZone} timezone.<br>Sessions are 1 hour long with 30-minute breaks between.`;
           document.getElementById('info-message').innerHTML = timeZoneMessage;
       });
   </script>
