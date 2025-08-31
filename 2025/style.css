@@ -162,8 +162,8 @@ img.decoration {
 /* Remove break-event styling since breaks will not be rendered at all */
 /* .break-event { ... } */
 
-.session-title {
-    font-weight: bold;
+.session-title a {
+    /*font-weight: bold;*/
     color: #FFC857;
     font-size: 1em; /* Decrease font size */
     margin-bottom: 2px;

@@ -15,7 +15,7 @@
     <img class="banner" src="assets/banner-conference.png" alt="Sketch Your Mind Conference">
     <div id="conference-intro">
       <div class="intro-lead">
-        <strong>October 13–17 🞄 Online</strong> 
+        <strong>October 13-17 🞄 Online</strong> 
       </div>
       <p class="intro-body">
         A global gathering of visual thinkers who see note-taking as a canvas for creativity, <span class="accent">playfulness,</span> collaboration, and storytelling.
@@ -40,11 +40,11 @@
   <script>
     const CONFERENCE_START = new Date("2025-10-13T17:00:00+02:00");
  
-  const year   = CONFERENCE_START.getUTCFullYear();
-  const month  = CONFERENCE_START.getUTCMonth();      // 0-based (0=Jan)
-  const day    = CONFERENCE_START.getUTCDate();
-  const hour   = CONFERENCE_START.getUTCHours();
-  const minute = CONFERENCE_START.getUTCMinutes();
+    const year   = CONFERENCE_START.getUTCFullYear();
+    const month  = CONFERENCE_START.getUTCMonth();      // 0-based (0=Jan)
+    const day    = CONFERENCE_START.getUTCDate();
+    const hour   = CONFERENCE_START.getUTCHours();
+    const minute = CONFERENCE_START.getUTCMinutes();
     
 
     function addDays(date, days) {
@@ -71,7 +71,7 @@
           0: {
               //"1": { link:"sessions/session-one.html", title: "Session One", presenter: "John Doe"},
               //"2": { link:"sessions/session-two.html", title: "Session Two", presenter: "Jane Doe" },
-              "3": { link:"sessions/sketch-your-mind.html", title: "Sketch Your Mind", presenter: "Zsolt Viczian" }
+              "3": { link:"sessions/sym", title: "Sketch Your Mind", presenter: "Zsolt Viczian" }
           },
           1: {
               "1": { link: "sessions/session-four.html",  title: "Session Four",   presenter: "John Doe" },
@@ -105,19 +105,19 @@
               const confDay = addDays(CONFERENCE_START, parseInt(day, 10));
               
               !!SESSIONS[day]["1"]?.title && events.push({
-                  title: `${SESSIONS[day]["1"].title} - ${SESSIONS[day]["1"].presenter}`,
+                  title: `${SESSIONS[day]["1"].title} - ${SESSIONS[day]["1"].presenter} - ${SESSIONS[day]["1"].link}`,
                   start: confDay,
                   end: addHours(confDay, 1, 0)
               });
               // Session 2: 17:30–18:30 UTC
               !!SESSIONS[day]["2"]?.title && events.push({
-                  title: `${SESSIONS[day]["2"].title} - ${SESSIONS[day]["2"].presenter}`,
+                  title: `${SESSIONS[day]["2"].title} - ${SESSIONS[day]["2"].presenter} - ${SESSIONS[day]["2"].link}`,
                   start: addHours(confDay, 1, 30),
                   end: addHours(confDay, 2, 30)
               });
               // Session 3: 19:00–20:00 UTC
               !!SESSIONS[day]["3"]?.title && events.push({
-                  title: `${SESSIONS[day]["3"].title} - ${SESSIONS[day]["3"].presenter}`,
+                  title: `${SESSIONS[day]["3"].title} - ${SESSIONS[day]["3"].presenter} - ${SESSIONS[day]["3"].link}`,
                   start: addHours(confDay, 3, 0),
                   end: addHours(confDay, 4, 0)
               });
@@ -125,14 +125,10 @@
 
           // Calculate local slotMinTime and slotMaxTime based on UTC session times
           // First session starts at 16:00 UTC, last session ends at 20:00 UTC
-          const localStart = luxon.DateTime.fromObject(
-              { year, month, day, hour, minute },
-              { zone: 'utc' }
-          ).setZone(luxon.DateTime.local().zoneName);
-          const localEnd = luxon.DateTime.fromObject(
-              { year, month, day, hour: hour+4, minute},
-              { zone: 'utc' }
-          ).setZone(luxon.DateTime.local().zoneName);
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          const baseUtc = luxon.DateTime.fromISO(CONFERENCE_START.toISOString(), { zone: 'utc' });
+          const localStart = baseUtc.setZone(tz);
+          const localEnd = baseUtc.plus({ hours: 4 }).setZone(tz);
 
           var calendar = new FullCalendar.Calendar(calendarEl, {
               initialView: 'timeGridWeek',
@@ -158,7 +154,7 @@
                   info.el.innerHTML = `
                       <div class="fc-event-time">${info.timeText}</div>
                       <div class="session-event">
-                          <div class="session-title">${parts[0]}</div>
+                          <div class="session-title"><a href="${parts[2]}">${parts[0]}</a></div>
                           <div class="session-presenter">${parts[1]}</div>
                       </div>
                   `;
