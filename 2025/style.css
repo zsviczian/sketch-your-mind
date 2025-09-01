@@ -325,3 +325,40 @@ a {
 .fc-header-toolbar.fc-toolbar {
     display: none;
 }
+
+/* Ensure the inner event content is centered vertically & horizontally */
+.fc-v-event .fc-event-main,
+.fc-v-event .fc-event-main-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center; /* keep text centered */
+}
+
+/* If you ever render dayGrid items, center those as well */
+.fc-daygrid-event .fc-event-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Center your custom wrapper too */
+.session-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+/* Keep time/title/presenter fully centered */
+.fc-event-time,
+.session-title,
+.session-presenter {
+  width: 100%;
+  text-align: center;
+}
