@@ -170,8 +170,7 @@ img.decoration {
   color: #FFC857;
 }
 
-.session-title a {
-    /*font-weight: bold;*/
+a {
     color: #FFC857;
     text-decoration: underline; /* underline session link */
 }
