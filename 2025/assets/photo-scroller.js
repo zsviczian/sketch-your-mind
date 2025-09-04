@@ -33,7 +33,7 @@
 
   function readOptions(root) {
     const defaults = {
-      speed: 30,       // pixels per second
+      speed: 20,       // pixels per second
       gap: 16,         // px
       imgSize: 128,     // px
       direction: 'left',
