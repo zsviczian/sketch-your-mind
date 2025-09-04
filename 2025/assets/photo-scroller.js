@@ -49,7 +49,7 @@
       pauseOnHover: root.dataset.pauseOnHover ? root.dataset.pauseOnHover === 'true' : undefined,
       borderRadius: root.dataset.borderRadius
     };
-    return { ...defaults, ...fromGlobal, ...Object.fromEntries(Object.entries(fromData).filter(([,v]) => v !== undefined)) };
+    return { ...defaults}; //, ...fromGlobal, ...Object.fromEntries(Object.entries(fromData).filter(([,v]) => v !== undefined)) };
   }
 
   function buildItem({ photo, name }) {
