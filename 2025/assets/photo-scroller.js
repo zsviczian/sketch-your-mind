@@ -4,8 +4,9 @@
   function ensureStyles() {
     if (document.getElementById(STYLE_ID)) return;
     const css = `
-      .sym-photo-scroller{position:relative;overflow:hidden;width:100%;}
-      .sym-photo-scroller .sym-track{display:flex;align-items:center;gap:var(--gap,16px);will-change:transform;animation-timing-function:linear;animation-iteration-count:infinite}
+      .sym-photo-scroller{position:relative;overflow:hidden;width:100%;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+      .sym-photo-scroller .sym-track{display:flex;align-items:center;gap:var(--gap,16px);will-change:transform;animation-timing-function:linear;animation-iteration-count:infinite;cursor:grab}
+      .sym-photo-scroller.dragging .sym-track{cursor:grabbing}
       .sym-photo-scroller[data-dir="left"] .sym-track{animation-name:sym-scroll-left}
       .sym-photo-scroller[data-dir="right"] .sym-track{animation-name:sym-scroll-right}
       .sym-photo-scroller .sym-segment{display:flex;align-items:center;gap:var(--gap,16px)}
@@ -33,7 +34,7 @@
 
   function readOptions(root) {
     const defaults = {
-      speed: 20,       // pixels per second
+      speed: 30,       // pixels per second
       gap: 16,         // px
       imgSize: 128,     // px
       direction: 'left',
@@ -70,15 +71,41 @@
     return item;
   }
 
+  // Helper: read current translateX (px) from computed transform matrix
+  function getTranslateX(el) {
+    const t = getComputedStyle(el).transform;
+    if (!t || t === 'none') return 0;
+    // matrix(a,b,c,d,tx,ty) or matrix3d(...)
+    if (t.startsWith('matrix3d(')) {
+      // matrix3d(m1,...,m16) where tx = m13? Actually tx is m13? In 3d, tx is m13? More robustly create DOMMatrix
+      try { return new DOMMatrixReadOnly(t).m41 || 0; } catch (_) { /* fallback below */ }
+    }
+    const m = t.match(/matrix\(([^)]+)\)/);
+    if (m) {
+      const parts = m[1].split(',').map(Number);
+      return parts[4] || 0;
+    }
+    try { return new DOMMatrixReadOnly(t).m41 || 0; } catch (_) { return 0; }
+  }
+
+  // Helper: wrap a translateX into the single-loop range
+  function normalizeTranslate(x, distance) {
+    const minX = Math.min(0, distance);
+    const range = Math.abs(distance) || 1;
+    // wrap into [minX, minX+range)
+    return ((x - minX) % range + range) % range + minX;
+  }
+
   function measureAndAnimate(wrapper, track, segment, speed, direction) {
     // Measure the width of a single segment (one full copy of items)
     const segWidth = segment.getBoundingClientRect().width;
-    if (segWidth === 0) return;
+    if (segWidth === 0) return { segWidth: 0, distance: 0, duration: 0 };
 
     const distance = direction === 'left' ? -segWidth : segWidth;
     track.style.setProperty('--distance', `${distance}px`);
     const duration = Math.max(0.001, segWidth / Math.max(1, speed)); // seconds
     track.style.animationDuration = `${duration}s`;
+    return { segWidth, distance, duration };
   }
 
   function initScroller(mountEl, content, opts) {
@@ -121,7 +148,10 @@
     }
 
     // Compute metrics and start animation
-    const recalc = () => measureAndAnimate(wrapper, track, seg1, opts.speed, wrapper.dataset.dir);
+    let metrics = { segWidth: 0, distance: 0, duration: 0 };
+    const recalc = () => {
+      metrics = measureAndAnimate(wrapper, track, seg1, opts.speed, wrapper.dataset.dir);
+    };
     // Initial async to ensure in DOM
     requestAnimationFrame(recalc);
     // Recompute on resize
@@ -130,6 +160,72 @@
     document.addEventListener('visibilitychange', () => {
       track.style.animationPlayState = document.hidden ? 'paused' : 'running';
     });
+
+    // Drag to control position, resume from that point
+    let dragging = false;
+    let startX = 0;
+    let startTranslate = 0;
+
+    function onPointerDown(e) {
+      if (e.button !== undefined && e.button !== 0) return; // only primary button
+      if (!metrics.segWidth) recalc();
+      if (!metrics.segWidth) return;
+
+      // Ensure it continues after release even if hovered
+      wrapper.classList.remove('paused');
+
+      // Freeze at current frame and switch to manual transform
+      const current = getTranslateX(track);
+      track.style.animationName = 'none';
+      track.style.transform = `translateX(${current}px)`;
+
+      dragging = true;
+      startX = e.clientX;
+      startTranslate = current;
+      wrapper.classList.add('dragging');
+      try { track.setPointerCapture(e.pointerId); } catch (_) {}
+      e.preventDefault();
+    }
+
+    function onPointerMove(e) {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      const proposed = startTranslate + dx;
+      const x = normalizeTranslate(proposed, metrics.distance);
+      track.style.transform = `translateX(${x}px)`;
+    }
+
+    function onPointerUp(e) {
+      if (!dragging) return;
+      dragging = false;
+      try { track.releasePointerCapture(e.pointerId); } catch (_) {}
+      const x = getTranslateX(track);
+      const d = metrics.distance;
+      const dur = metrics.duration || 0.001;
+
+      // Compute progress along the current keyframes [0..1)
+      let p;
+      if (d < 0) {
+        // from 0 to d (negative)
+        p = x / d;
+      } else {
+        // from d (positive) to 0
+        p = 1 - (x / d);
+      }
+      // normalize to [0,1)
+      p = ((p % 1) + 1) % 1;
+
+      // Restore CSS animation and jump to the right progress using negative delay
+      track.style.transform = '';
+      track.style.animationName = ''; // re-enable the CSS-defined animation-name
+      track.style.animationDelay = `-${p * dur}s`;
+      wrapper.classList.remove('dragging');
+    }
+
+    track.addEventListener('pointerdown', onPointerDown);
+    track.addEventListener('pointermove', onPointerMove);
+    track.addEventListener('pointerup', onPointerUp);
+    track.addEventListener('pointercancel', onPointerUp);
   }
 
   function boot() {
