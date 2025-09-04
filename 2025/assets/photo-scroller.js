@@ -4,7 +4,7 @@
   function ensureStyles() {
     if (document.getElementById(STYLE_ID)) return;
     const css = `
-      .sym-photo-scroller{position:relative;overflow:hidden;width:100%;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+      .sym-photo-scroller{padding-bottom: 2em;position:relative;overflow:hidden;width:100%;user-select:none;-webkit-user-select:none;touch-action:pan-y}
       .sym-photo-scroller .sym-track{display:flex;align-items:center;gap:var(--gap,16px);will-change:transform;animation-timing-function:linear;animation-iteration-count:infinite;cursor:grab}
       .sym-photo-scroller.dragging .sym-track{cursor:grabbing}
       .sym-photo-scroller[data-dir="left"] .sym-track{animation-name:sym-scroll-left}
