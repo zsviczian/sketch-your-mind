@@ -362,3 +362,12 @@ a {
   width: 100%;
   text-align: center;
 }
+
+/* Centered book cover on session pages */
+.book-cover {
+  display: block;
+  margin: 16px auto 0 auto;
+  width: min(70%, 380px);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
