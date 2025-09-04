@@ -10,8 +10,8 @@
       .sym-photo-scroller[data-dir="right"] .sym-track{animation-name:sym-scroll-right}
       .sym-photo-scroller .sym-segment{display:flex;align-items:center;gap:var(--gap,16px)}
       .sym-photo-item{display:flex;flex-direction:column;align-items:center;justify-content:center}
-      .sym-photo-item img{width:var(--size,64px);height:var(--size,64px);object-fit:cover;border-radius:var(--radius,50%);display:block;background:#efefef}
-      .sym-photo-item .sym-caption{font-size:.8rem;margin-top:6px;white-space:nowrap;color:#333}
+      .sym-photo-item img{width:var(--size,128px);height:var(--size,128px);object-fit:cover;border-radius:var(--radius,50%);display:block;background:#efefef}
+      .sym-photo-item .sym-caption{font-size:.8rem;margin-top:6px;white-space:nowrap;color:#FFF6F0}
       .sym-photo-scroller.paused .sym-track{animation-play-state:paused}
       @keyframes sym-scroll-left{from{transform:translateX(0)}to{transform:translateX(var(--distance,-2000px))}}
       @keyframes sym-scroll-right{from{transform:translateX(var(--distance,-2000px))}to{transform:translateX(0)}}
