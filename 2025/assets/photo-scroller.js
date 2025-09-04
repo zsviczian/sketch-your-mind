@@ -33,9 +33,9 @@
 
   function readOptions(root) {
     const defaults = {
-      speed: 60,       // pixels per second
+      speed: 30,       // pixels per second
       gap: 16,         // px
-      imgSize: 64,     // px
+      imgSize: 128,     // px
       direction: 'left',
       pauseOnHover: true,
       borderRadius: '50%' // circle by default
