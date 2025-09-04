@@ -31,12 +31,11 @@
       <div class="intro-lead">
         <strong>October 13-17, 2025 - Online</strong> 
       </div>
+      <div class="photoscroller"></div>
       <p class="intro-body">
         A global gathering of visual thinkers who see note-taking as a canvas for creativity, <span class="accent">playfulness,</span> collaboration, and storytelling.
         <br>
-        Join us for five days of interactive talks and workshops with leaders like
-        <br>
-        <mark>Dave Gray, Mike Rohde, Doug Neill, Jerry Michalski, and more.</mark>
+        Join us for five days of interactive talks and workshops with thought leaders.
         <br>
         Discover fresh ways to sketch ideas, unlock your creativity, and connect with a worldwide community of visual minds.
         <br>
@@ -50,6 +49,22 @@
     <div id="calendar"></div>
     <div id="info-message"></div>
   </div>
+
+  <!-- Configure the presenters shown in the photo scroller -->
+  <script>
+    // Update with real image paths
+    window.scrollerContent = [
+      { photo: 'sessions/gamestorming/DaveGray.jpg', name: 'Dave Gray' },
+      { photo: 'sessions/emergence/NickMilo.jpg', name: 'Nick Milo' },
+      { photo: 'sessions/doug/doug-neill.png', name: 'Doug Neill' },
+      { photo: 'sessions/brain/jerry-michalski.jpg', name: 'Jerry Michalski' },
+      { photo: 'sessions/nicole/nicolevanderhoeven.png', name: 'Nicole van der Hoeven' },
+      { photo: 'sessions/sym/author.png', name: 'Zsolt Viczian' }
+    ];
+    // Optional: tweak behavior
+    window.scrollerOptions = { speed: 80, gap: 12, imgSize: 72, direction: 'left', pauseOnHover: true };
+  </script>
+  <script src="assets/photo-scroller.js"></script>
 
   <script>
     const CONFERENCE_START = new Date("2025-10-13T18:00:00+02:00");
