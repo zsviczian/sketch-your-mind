@@ -23,7 +23,7 @@
       // "3": { link: "sessions/session-twelve.html",  title: "Session Twelve",  presenter: "John Doe", zoomLink: "" }
     },
     4: {
-      //"1": { link: "sessions/placeholder", title: "Session Thirteen", presenter: "John Doe", zoomLink: "" },
+      "1": { link: "sessions/ingrid", title: "Find Your Message", presenter: "Ingrid Lill", zoomLink: "" },
       //"2": { link: "sessions/placeholder", title: "Session Fourteen", presenter: "Jane Doe", zoomLink: "" },
       "3": { link: "sessions/placeholder",  title: "Recap, Thank You, and Fairwell",  presenter: "Zsolt Viczián", zoomLink: "" }
     }
