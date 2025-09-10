@@ -18,7 +18,7 @@
       //"3": { link:"sessions/sym", title: "Hybrid Notes<br>A New Way of Thinking", presenter: "Zsolt Viczian", zoomLink: "" }
     },
     3: {
-      // "1": { link: "sessions/session-ten.html",     title: "Session Ten",     presenter: "John Doe", zoomLink: "" },
+       "1": { link: "sessions/jorge",     title: "How I Write My Books",     presenter: "Jorge Arango", zoomLink: "" },
       //"2": { link: "sessions/placeholder",  title: "Session Eleven",  presenter: "Jane Doe", zoomLink: "" },
       // "3": { link: "sessions/session-twelve.html",  title: "Session Twelve",  presenter: "John Doe", zoomLink: "" }
     },
