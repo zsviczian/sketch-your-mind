@@ -13,7 +13,7 @@
       "3": { link: "sessions/visualframeworks", title: "Visual Frameworks", presenter: "Dave Gray", zoomLink: "" }
     },
     2: {
-      //"1": { link: "sessions/placeholder",   title: "Session Seven",   presenter: "John Doe", zoomLink: "https://index.hu" },
+      "1": { link: "sessions/janis",   title: "Explain Ideas Visually",   presenter: "Janis Ozolins", zoomLink: "" },
       "2": { link: "sessions/genius",   title: "Drawing Out Your Genius",   presenter: "Lisa Rothstein", zoomLink: "" },
       //"3": { link:"sessions/sym", title: "Hybrid Notes<br>A New Way of Thinking", presenter: "Zsolt Viczian", zoomLink: "" }
     },
