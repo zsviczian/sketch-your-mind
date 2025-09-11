@@ -33,7 +33,7 @@
     return [];
   }
 
-  function readOptions() {
+  function readOptions(root) {
     const defaults = {
       speed: 30,       // pixels per second
       gap: 16,         // px
@@ -82,6 +82,7 @@
     img.loading = 'lazy';
     img.decoding = 'async';
     img.src = photo;
+    img.draggable = false; // avoid native drag ghost interfering with tap detection
 
     const norm = normalizeName(name);
     const titles = titlesByPresenter[norm] || [];
@@ -91,10 +92,6 @@
     } else {
       img.title = name || '';
     }
-
-    img.addEventListener('click', () => {
-      highlightPresenter(name);
-    });
 
     const cap = document.createElement('div');
     cap.className = 'sym-caption';
@@ -229,33 +226,54 @@
       track.style.animationPlayState = document.hidden ? 'paused' : 'running';
     });
 
-    // Drag-to-scroll with movement threshold to preserve clicks
+    // Drag-to-scroll with tap detection to trigger highlight reliably (works for cloned nodes too)
     let isPointerDown = false;
     let dragging = false;
     let startX = 0;
     let startTranslate = 0;
+    let downImgName = null;
+    let lastTriggerTs = 0;
     const DRAG_THRESHOLD = 5; // px
+
+    function triggerHighlightOnce(name) {
+      const now = Date.now();
+      if (now - lastTriggerTs < 250) return; // debounce double fire from pointer+click
+      lastTriggerTs = now;
+      highlightPresenter(name);
+    }
+
+    function nameFromTarget(target) {
+      const img = target && target.closest ? target.closest('.sym-photo-item img') : null;
+      if (!img) return null;
+      const cap = img.parentElement && img.parentElement.querySelector ? img.parentElement.querySelector('.sym-caption') : null;
+      const name = (cap && cap.textContent) || img.alt || '';
+      return name.trim() || null;
+    }
+
+    function nameFromPoint(x, y) {
+      const el = document.elementFromPoint(x, y);
+      return nameFromTarget(el);
+    }
 
     function onPointerDown(e) {
       if (e.button !== undefined && e.button !== 0) return; // only primary button
-      if (!metrics.segWidth) recalc();
-      if (!metrics.segWidth) return;
-
       isPointerDown = true;
       dragging = false;
       startX = e.clientX;
       startTranslate = getTranslateX(track);
+      downImgName = nameFromTarget(e.target);
     }
 
     function onPointerMove(e) {
       if (!isPointerDown) return;
       const dx = e.clientX - startX;
       if (!dragging && Math.abs(dx) > DRAG_THRESHOLD) {
-        // start dragging: freeze animation at current frame
+        if (!metrics.segWidth) recalc();
         const current = getTranslateX(track);
         track.style.animationName = 'none';
         track.style.transform = `translateX(${current}px)`;
         dragging = true;
+        downImgName = null; // do not treat as a tap anymore
         wrapper.classList.add('dragging');
         try { track.setPointerCapture(e.pointerId); } catch (_) {}
       }
@@ -295,13 +313,30 @@
         track.style.animationName = ''; // re-enable the CSS-defined animation-name
         track.style.animationDelay = `-${p * dur}s`;
         wrapper.classList.remove('dragging');
+      } else {
+        // Treat as a tap/click; if we didn't capture the name on down (due to movement), resolve by point now
+        const resolvedName = downImgName || nameFromPoint(e.clientX, e.clientY);
+        if (resolvedName) {
+          triggerHighlightOnce(resolvedName);
+        }
       }
+      downImgName = null;
     }
+
+    // Delegated click fallback to catch cases where pointer events may not fire as expected
+    track.addEventListener('click', (e) => {
+      const name = nameFromTarget(e.target);
+      if (!name) return;
+      triggerHighlightOnce(name);
+    });
 
     track.addEventListener('pointerdown', onPointerDown);
     track.addEventListener('pointermove', onPointerMove);
     track.addEventListener('pointerup', onPointerUp);
     track.addEventListener('pointercancel', onPointerUp);
+    // Also listen at window level so we still get pointerup if the animated track moves under the pointer
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
   }
 
   function boot() {
