@@ -15,7 +15,7 @@
     2: {
       "1": { link: "sessions/janis",   title: "Explain Ideas Visually",   presenter: "Janis Ozolins", zoomLink: "" },
       "2": { link: "sessions/genius",   title: "Drawing Out Your Genius",   presenter: "Lisa Rothstein", zoomLink: "" },
-      //"3": { link:"sessions/sym", title: "Hybrid Notes<br>A New Way of Thinking", presenter: "Zsolt Viczian", zoomLink: "" }
+      "3": { link:"sessions/ole", title: "System Visualization for Systems Transformation", presenter: "Ole Qvist-Sørensen", zoomLink: "" }
     },
     3: {
        "1": { link: "sessions/jorge",     title: "How I Write My Books",     presenter: "Jorge Arango", zoomLink: "" },
