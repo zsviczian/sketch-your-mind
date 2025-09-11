@@ -19,7 +19,7 @@
     },
     3: {
        "1": { link: "sessions/jorge",     title: "How I Write My Books",     presenter: "Jorge Arango", zoomLink: "" },
-      //"2": { link: "sessions/placeholder",  title: "Session Eleven",  presenter: "Jane Doe", zoomLink: "" },
+       "2": { link: "sessions/jono",  title: "Sketchplanations",  presenter: "Jono Hey", zoomLink: "" },
       // "3": { link: "sessions/session-twelve.html",  title: "Session Twelve",  presenter: "John Doe", zoomLink: "" }
     },
     4: {
