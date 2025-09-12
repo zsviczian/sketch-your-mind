@@ -20,7 +20,7 @@
     3: {
        "1": { link: "sessions/jorge",     title: "How I Write My Books",     presenter: "Jorge Arango", zoomLink: "" },
        "2": { link: "sessions/jono",  title: "Sketchplanations",  presenter: "Jono Hey", zoomLink: "" },
-      // "3": { link: "sessions/session-twelve.html",  title: "Session Twelve",  presenter: "John Doe", zoomLink: "" }
+       "3": { link: "sessions/sousanis",  title: "Thinking in Comics",  presenter: "Nick Sousanis", zoomLink: "" }
     },
     4: {
       "1": { link: "sessions/ingrid", title: "Find Your Message", presenter: "Ingrid Lill", zoomLink: "" },
