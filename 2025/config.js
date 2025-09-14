@@ -20,11 +20,11 @@
     3: {
        "1": { link: "sessions/jorge",     title: "How I Write My Books",     presenter: "Jorge Arango", zoomLink: "" },
        "2": { link: "sessions/jono",  title: "Sketchplanations",  presenter: "Jono Hey", zoomLink: "" },
-      // "3": { link: "sessions/session-twelve.html",  title: "Session Twelve",  presenter: "John Doe", zoomLink: "" }
+       "3": { link: "sessions/sousanis",  title: "Thinking in Comics",  presenter: "Nick Sousanis", zoomLink: "" }
     },
     4: {
       "1": { link: "sessions/ingrid", title: "Find Your Message", presenter: "Ingrid Lill", zoomLink: "" },
-      //"2": { link: "sessions/placeholder", title: "Session Fourteen", presenter: "Jane Doe", zoomLink: "" },
+      "2": { link: "sessions/emergence", title: `The Emergence of "Idea Emergence"`, presenter: "Nick Milo", zoomLink: "" },
       "3": { link: "sessions/placeholder",  title: "Recap, Thank You, and Fairwell",  presenter: "Zsolt Viczián", zoomLink: "" }
     }
   };
