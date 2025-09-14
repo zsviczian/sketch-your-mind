@@ -367,7 +367,14 @@ a {
 .book-cover {
   display: block;
   margin: 16px auto 0 auto;
-  width: min(70%, 380px);
+  width: min(70%, 300px);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+.book-cover-bio {
+  display: block;
+  width: min(70%, 250px);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.25);
 }
@@ -411,3 +418,20 @@ a {
 
 /* Make scroller images clearly clickable */
 .sym-photo-item img { cursor: pointer; }
+
+/* RingCentral Hopin embed responsiveness */
+.hopin-container { 
+  overflow: hidden;
+  padding-top: 75.25%;
+  max-width: 900px;;
+  position: relative;
+}
+
+.hopin-container iframe {
+   border: 0;
+   height: clamp(300px, 55vh, 560px);
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+}

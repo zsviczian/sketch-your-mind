@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RingCentral Schedule CSV Generator</title>
+</head>
+<body>
+<h3>Generating schedule.csv...</h3>
+<p id="status">Preparing CSV from config.js sessions.</p>
+
+<script src="../config.js"></script>
+<script>
+(function() {
+  if (!window.SESSIONS || !window.CONFERENCE_START) {
+    document.getElementById('status').textContent = 'Missing SESSIONS or CONFERENCE_START.';
+    return;
+  }
+
+  const baseUrl = 'https://sketch-your-mind.com/2025/';
+  const header = [
+    'Start date',
+    'Start time',
+    'End date',
+    'End time',
+    'Schedule name',
+    'Schedule description',
+    'Segment name',
+    'Segment type',
+    'External URL',
+    'Open URL in new tab',
+    'Tags',
+    'Speaker names',
+    'Attendance'
+  ];
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function formatDate(d){
+    return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+  }
+  function formatTime(d){
+    return pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+  function addMinutes(date, mins){
+    return new Date(date.getTime() + mins * 60000);
+  }
+  function addDays(date, days){
+    return new Date(date.getTime() + days * 86400000);
+  }
+
+  const rows = [header];
+
+  // Session timing offsets (minutes from day start)
+  const slots = [
+    { key: '1', start: 0,    end: 60   },
+    { key: '2', start: 90,   end: 150  },
+    { key: '3', start: 180,  end: 240  }
+  ];
+
+  for (const dayKey of Object.keys(SESSIONS).sort((a,b)=>+a - +b)) {
+    const daySessions = SESSIONS[dayKey];
+    const dayStart = addDays(new Date(CONFERENCE_START), parseInt(dayKey, 10));
+
+    slots.forEach(slot => {
+      const s = daySessions[slot.key];
+      if (!s || !s.title) return;
+
+      const start = addMinutes(dayStart, slot.start);
+      const end = addMinutes(dayStart, slot.end);
+
+      const title = s.title.replace(/"/g,'""');
+      const presenter = (s.presenter || '').replace(/"/g,'""');
+      const description = (s.subTitle || s.title || '').replace(/"/g,'""'); // NEW: use subTitle for description
+      const link = s.link ? (baseUrl + s.link) : '';
+
+      rows.push([
+        formatDate(start),
+        formatTime(start),
+        formatDate(end),
+        formatTime(end),
+        `"${title}"`,            // Schedule name
+        `"${description}"`,      // Schedule description (was title)
+        `"${presenter}"`,        // Segment name
+        'sessions',
+        link,
+        'true',
+        '',
+        `"${presenter}"`,
+        'regular'
+      ]);
+    });
+  }
+
+  const csv = rows.map(r => r.join(',')).join('\r\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'schedule.csv';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+
+  document.getElementById('status').textContent = 'Download triggered: schedule.csv';
+})();
+</script>
+</body>
+</html>
