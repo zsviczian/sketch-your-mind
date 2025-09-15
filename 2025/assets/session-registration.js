@@ -103,10 +103,17 @@
   }
 
   function insertAfterAuthor(sectionEl) {
-    const authorTitle = document.querySelector('#author-title');
-    if (!authorTitle) return false;
-    const authorSection = authorTitle.closest('section') || authorTitle;
-    authorSection.insertAdjacentElement('afterend', sectionEl);
+    // Support multiple author sections: insert after the last one.
+    const authorTitles = Array.from(document.querySelectorAll('#author-title'));
+    if (!authorTitles.length) return false;
+
+    let lastSection = null;
+    for (const titleEl of authorTitles) {
+      const sec = titleEl.closest('section') || titleEl;
+      if (sec) lastSection = sec;
+    }
+    if (!lastSection) return false;
+    lastSection.insertAdjacentElement('afterend', sectionEl);
     return true;
   }
 
