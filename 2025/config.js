@@ -19,7 +19,7 @@
     },
     3: {
        "1": { link: "sessions/jorge",     title: "How I Write My Books", subTitle: "Visual Structures that Help You Think", presenter: "Jorge Arango", zoomLink: "" },
-       "2": { link: "sessions/jono",  title: "Sketchplanations", subTitle: "A Decade of Drawing the World", presenter: "Jono Hey", zoomLink: "" },
+       "2": { link: "sessions/jono",  title: "Sketchplanations", subTitle: "A Decade of Drawing the World", presenter: "Jono Hey<br>Oliver Caviglioli", zoomLink: "" },
        "3": { link: "sessions/sousanis",  title: "Thinking in Comics", subTitle: "How the Grammar of the Page Shapes the Grammar of Our Thoughts", presenter: "Nick Sousanis", zoomLink: "" }
     },
     4: {
