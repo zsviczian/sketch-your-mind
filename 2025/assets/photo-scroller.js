@@ -47,14 +47,16 @@
 
   // Normalize names for robust matching (case/diacritics/whitespace)
   function normalizeName(s) {
-    return (s || '')
+    if(!s) return '';
+    return s.split("<br>").map(part => part
       .toString()
       .trim()
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, ' ');
-  }
+      .replace(/\s+/g, ' ')
+    );
+  } 
 
   // Build presenter => [titles] index from window.SESSIONS
   function buildSessionsIndex() {
@@ -66,8 +68,10 @@
         Object.keys(slots).forEach(slot => {
           const s = slots[slot];
           if (!s || !s.presenter || !s.title) return;
-          const key = normalizeName(s.presenter);
-          (index[key] ||= []).push(s.title);
+          const keys = normalizeName(s.presenter);
+          keys.forEach(key =>
+            (index[key] ||= []).push(s.title)
+          );
         });
       });
     } catch (_) {}
@@ -84,8 +88,12 @@
     img.src = photo;
     img.draggable = false; // avoid native drag ghost interfering with tap detection
 
-    const norm = normalizeName(name);
-    const titles = titlesByPresenter[norm] || [];
+    const names = normalizeName(name);
+    const titles = [];
+    names.forEach(norm => {
+      const ts = titlesByPresenter[norm] || [];
+      titles.push(...ts);
+    });
     if (titles.length) {
       img.title = titles.join('\n');
       img.setAttribute('aria-label', `${name}: ${titles.join(', ')}`);
@@ -151,7 +159,7 @@
     const doHighlight = () => {
       const presenterEls = Array.from(document.querySelectorAll('.session-presenter'));
       const targets = presenterEls
-        .filter(el => normalizeName(el.textContent) === norm)
+        .filter(el => normalizeName(el.innerHTML).includes(norm[0]))
         .map(el => el.closest('.fc-event, .fc-list-event'))
         .filter(Boolean);
 
