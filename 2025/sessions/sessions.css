@@ -5,16 +5,6 @@
   padding: 0 16px;
 }
 
-.section-card {
-  background: #13383D;
-  border: 2.5px solid #FFC857;
-  border-radius: 12px;
-  color: #FFF6F0;
-  padding: 18px 20px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
-  margin: 20px 0;
-}
-
 .section-title {
   color: #FFC857;
   font-size: 1.4em;

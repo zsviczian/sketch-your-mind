@@ -436,7 +436,6 @@ a {
    width: 100%;
 }
 
-/* Shared card + title styles (reused from session pages) */
 .section-card {
   background: #13383D;
   border: 2.5px solid #FFC857;
@@ -444,11 +443,10 @@ a {
   color: #FFF6F0;
   padding: 18px 20px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.18);
-  margin: 40px auto 60px auto;
-  max-width: 900px;
+  margin: 20px 0;
 }
 
-.section-title {
+.section-title-host {
   color: #FFC857;
   font-size: 1.4em;
   margin: 0 0 14px 0;
