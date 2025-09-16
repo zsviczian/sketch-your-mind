@@ -152,10 +152,7 @@
     const calendarEl = document.getElementById('calendar');
     if (!calendarEl) return;
 
-    // Smooth scroll to the agenda
-    calendarEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    // After scrolling starts, highlight matching sessions
+    // Highlight matching sessions
     const doHighlight = () => {
       const presenterEls = Array.from(document.querySelectorAll('.session-presenter'));
       const targets = presenterEls
@@ -170,12 +167,10 @@
         el.classList.add('flash-highlight');
         setTimeout(() => { if (el) el.classList.remove('flash-highlight'); }, 3500);
       });
-
-      if (targets[0]) {
-        // Ensure the first highlighted event is in view
-        targets[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
     };
+
+    // Smooth scroll to the agenda
+    calendarEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // small delay to allow scroll and potential layout adjustments
     setTimeout(doHighlight, 350);
