@@ -11,7 +11,7 @@
       .sym-photo-scroller[data-dir="right"] .sym-track{animation-name:sym-scroll-right}
       .sym-photo-scroller .sym-segment{display:flex;align-items:center;gap:var(--gap,16px)}
       .sym-photo-item{display:flex;flex-direction:column;align-items:center;justify-content:center}
-      .sym-photo-item img{width:var(--size,128px);height:var(--size,128px);object-fit:cover;border-radius:var(--radius,50%);display:block;background:#efefef;cursor:pointer;transition:transform .15s ease}
+      .sym-photo-item img{width:var(--size,128px);height:var(--size,128px);object-fit:cover;border-radius:var(--radius,50%);display:block;background:#13383D;cursor:pointer;transition:transform .15s ease}
       .sym-photo-item img:hover{transform:scale(1.03)}
       .sym-photo-item .sym-caption{font-size:.8rem;margin-top:6px;white-space:nowrap;color:#FFF6F0}
       .sym-photo-scroller.paused .sym-track{animation-play-state:paused}
