@@ -31,7 +31,7 @@
     // slotIndex: 1-based; slots are 1h long with 30m breaks => 90m steps
     const start = new Date(base);
     const startDay = window.addDays ? window.addDays(start, dayIndex) : new Date(start.getTime() + dayIndex * 24 * 60 * 60 * 1000);
-    const minutesOffset = (Math.max(1, Number(slotIndex)) - 1) * 90;
+    const minutesOffset = (Number(slotIndex) - 1) * 90;
     return new Date(startDay.getTime() + minutesOffset * 60 * 1000);
   }
 

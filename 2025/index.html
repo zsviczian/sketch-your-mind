@@ -68,6 +68,7 @@
       { photo: 'sessions/ingrid/IngridLill.jpg', name: 'Ingrid Lill' },
       { photo: 'sessions/janis/JanisOzolins.jpg', name: 'Janis Ozolins' },
       { photo: 'sessions/brain/jerry-michalski.jpg', name: 'Jerry Michalski' },
+      { photo: 'sessions/ai/Jihyun-Lee.png', name: 'Jihyun ‘Jilly’ Lee'},
       { photo: 'sessions/jono/Jono-Hey.jpg', name: 'Jono Hey' },
       { photo: 'sessions/jorge/JorgeArango.jpg', name: 'Jorge Arango' },
       { photo: 'sessions/genius/LisaRothstein.jpg', name: 'Lisa Rothstein' },
@@ -98,6 +99,12 @@
           // Session 1: 16:00–17:00 UTC
           const confDay = addDays(CONFERENCE_START, parseInt(day, 10));
           
+          !!SESSIONS[day]["0"]?.title && events.push({
+              title: `${SESSIONS[day]["0"].title} - ${SESSIONS[day]["0"].presenter} - ${SESSIONS[day]["0"].link}`,
+              start: addHours(confDay,-1,-30),
+              end: addHours(confDay, 0, -30)
+          });
+
           !!SESSIONS[day]["1"]?.title && events.push({
               title: `${SESSIONS[day]["1"].title} - ${SESSIONS[day]["1"].presenter} - ${SESSIONS[day]["1"].link}`,
               start: confDay,
@@ -121,7 +128,7 @@
       // First session starts at 16:00 UTC, last session ends at 20:00 UTC
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
       const baseUtc = luxon.DateTime.fromISO(CONFERENCE_START.toISOString(), { zone: 'utc' });
-      const localStart = baseUtc.setZone(tz);
+      const localStart = baseUtc.plus({ hours: -2 }).setZone(tz);
       const localEnd = baseUtc.plus({ hours: 4 }).setZone(tz);
 
       // Decide the initial view based on screen width

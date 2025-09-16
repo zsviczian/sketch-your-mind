@@ -8,6 +8,7 @@
       "3": { link:"sessions/gamestorming", title: "Gamestorming", subTitle: "Playful visual frameworks to navigate uncertainty and align faster.", presenter: "Dave Gray", zoomLink: "" }
     },
     1: {
+      "0": { link: "sessions/ai", title: "Structuring Your Visuals for AI", subTitle: "The Logical Sketchnote", presenter: "Jihyun 'Jilly' Lee", zoomLink: "" },
       "1": { link: "sessions/anderson",  title: "Visual SenseMaking", subTitle: "From Blank Page to Big Picture",  presenter: "Stephen P. Anderson", zoomLink: "" },
       "2": { link: "sessions/brain",  title: "Jerry's Brain", subTitle: "A live tour of Jerry's Brain — how connecting ideas over time unlocks insight and better decisions.",  presenter: "Jerry Michalski", zoomLink: "" },
       "3": { link: "sessions/visualframeworks", title: "Visual Frameworks", subTitle: "A pattern language to clarify thinking, discover options, and align faster.", presenter: "Dave Gray", zoomLink: "" }
