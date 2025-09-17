@@ -81,16 +81,16 @@
     const isOpen = now >= REG_OPEN;
 
     if (hasLink && isOpen) {
-      btn.textContent = 'Register on Zoom';
+      btn.textContent = 'Register';
       btn.addEventListener('click', () => window.open(zoomLink, '_blank', 'noopener'));
     } else {
       btn.disabled = true;
       if (!hasLink) {
-        btn.textContent = 'Registration unavailable';
-        btn.title = 'Zoom registration link is not available yet.';
+        btn.textContent = 'Registration opens on 20 September';
+        btn.title = 'Registration link is not available yet.';
       } else {
-        btn.textContent = 'Registration opens Sat, 20 Sep';
-        btn.title = 'Registration not open yet.';
+        btn.textContent = 'Registration opens on 20 September';
+        btn.title = 'Registration is not open yet.';
         const note = document.createElement('p');
         note.style.marginTop = '0.5rem';
         note.textContent = 'Registration opens on Saturday, 20 September.';

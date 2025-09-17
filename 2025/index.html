@@ -58,6 +58,7 @@
       </script>-->
     <div id="calendar"></div>
     <div id="info-message"></div>
+    <div id="registration-note"></div>
   </div>
 
   <!-- Configure the presenters shown in the photo scroller -->
@@ -211,6 +212,10 @@
 
       // Replace inline time zone message construction with utility
       document.getElementById('info-message').innerHTML = timeZoneMessage();
+
+      // Separate registration note directly after the timezone piece
+      document.getElementById('registration-note').textContent =
+        'Registration opens on Saturday, 20 September';
     });
   </script>
 
