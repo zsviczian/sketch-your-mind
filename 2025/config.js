@@ -14,6 +14,7 @@
       "3": { link: "sessions/visualframeworks", title: "Visual Frameworks", subTitle: "A pattern language to clarify thinking, discover options, and align faster.", presenter: "Dave Gray", zoomLink: "" }
     },
     2: {
+      "0": { link: "sessions/brandy", title: "TBC", subTitle: "An amazing session with Brandy", presenter: "Brandy Agerbeck", zoomLink: "" },
       "1": { link: "sessions/janis",   title: "Explain Ideas Visually",  subTitle: "Turn ideas into visuals people instantly “get.”",  presenter: "Janis Ozolins", zoomLink: "" },
       "2": { link: "sessions/genius",   title: "Drawing Out Your Genius",  subTitle: "Use Visual Thinking to Sell Ideas, Drive Buy-in, and Lead Change", presenter: "Lisa Rothstein", zoomLink: "" },
       "3": { link:"sessions/ole", title: "System Visualization for Systems Transformation", subTitle: "Frameworks for Personal Learning and Change", presenter: "Ole Qvist-Sørensen", zoomLink: "" }
