@@ -82,12 +82,36 @@ img.decoration {
     text-align: center;
     margin: 20px auto 0 auto;
     font-size: 1.1em;
-    background: #FFC857;
+    background: #ffbf40;
     color: #0D2B2F;
     border-radius: 8px;
     padding: 12px 20px;
     max-width: 700px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    /* Make button look like the previous static panel */
+    appearance: none;
+    border: none;
+    font-family: 'Excalifont', Arial, sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1.3;
+    display: block;
+}
+
+#registration-note:hover,
+#registration-note:focus {
+  background: #FFD680;
+  color: #0D2B2F;
+  outline: 2px solid #FFC857;
+}
+
+#registration-note:active {
+  transform: translateY(1px);
+}
+
+#registration-note:focus-visible {
+  outline: 3px solid #FFFFFF;
+  box-shadow: 0 0 0 3px #FFC857;
 }
 
 #conference-intro {

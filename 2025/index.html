@@ -58,7 +58,7 @@
       </script>-->
     <div id="calendar"></div>
     <div id="info-message"></div>
-    <div id="registration-note"></div>
+    <button id="registration-note" type="button" aria-label="Register for Sketch Your Mind Conference">Register Now!</button>
   </div>
 
   <!-- Configure the presenters shown in the photo scroller -->
@@ -213,9 +213,11 @@
       // Replace inline time zone message construction with utility
       document.getElementById('info-message').innerHTML = timeZoneMessage();
 
-      // Separate registration note directly after the timezone piece
-      document.getElementById('registration-note').textContent =
-        'Registration opens on Saturday, 20 September';
+      // Removed old textContent assignment. Add click handler for registration.
+      var regBtn = document.getElementById('registration-note');
+      regBtn.addEventListener('click', function() {
+        window.open('https://events.ringcentral.com/events/sketch-your-mind-conference', '_blank', 'noopener');
+      });
     });
   </script>
 

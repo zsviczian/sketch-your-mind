@@ -60,7 +60,7 @@
       return section;
     }
 
-    const { start, end, zoomLink } = info;
+    const { start, end, registrationLink } = info;
 
     const pTime = document.createElement('p');
     pTime.className = 'session-time';
@@ -77,12 +77,12 @@
     btn.className = 'register-button';
     const REG_OPEN = new Date(2025, 8, 20); // Sat, 20 Sep 2025 (local)
     const now = new Date();
-    const hasLink = typeof zoomLink === 'string' && zoomLink.trim().length > 0;
+    const hasLink = typeof registrationLink === 'string' && registrationLink.trim().length > 0;
     const isOpen = now >= REG_OPEN;
 
     if (hasLink && isOpen) {
       btn.textContent = 'Register';
-      btn.addEventListener('click', () => window.open(zoomLink, '_blank', 'noopener'));
+      btn.addEventListener('click', () => window.open(registrationLink, '_blank', 'noopener'));
     } else {
       btn.disabled = true;
       if (!hasLink) {
@@ -130,7 +130,7 @@
       info = {
         start,
         end,
-        zoomLink: found.session.zoomLink
+        registrationLink: found.session.registrationLink
       };
     }
 

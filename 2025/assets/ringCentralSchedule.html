@@ -51,9 +51,10 @@
 
   // Session timing offsets (minutes from day start)
   const slots = [
-    { key: '1', start: 0,    end: 60   },
-    { key: '2', start: 90,   end: 150  },
-    { key: '3', start: 180,  end: 240  }
+    { key: '0', start: -90, end: -30 },
+    { key: '1', start: 0, end: 60 },
+    { key: '2', start: 90, end: 150 },
+    { key: '3', start: 180, end: 240 }
   ];
 
   for (const dayKey of Object.keys(SESSIONS).sort((a,b)=>+a - +b)) {
