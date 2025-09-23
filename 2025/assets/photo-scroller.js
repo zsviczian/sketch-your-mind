@@ -148,32 +148,74 @@
   }
 
   function highlightPresenter(name) {
-    const norm = normalizeName(name);
+    const norms = normalizeName(name);
+    if (!norms.length) return;
     const calendarEl = document.getElementById('calendar');
     if (!calendarEl) return;
 
-    // Highlight matching sessions
-    const doHighlight = () => {
+    // Detect current FC view (list view used on mobile)
+    const isListView = !!calendarEl.querySelector('.fc-list-table') || !!calendarEl.querySelector('.fc-list');
+    const isMobile = window.matchMedia('(max-width: 600px)').matches || isListView;
+
+    function findTargets() {
       const presenterEls = Array.from(document.querySelectorAll('.session-presenter'));
-      const targets = presenterEls
-        .filter(el => normalizeName(el.innerHTML).includes(norm[0]))
+      return presenterEls
+        .filter(el => {
+          const n = normalizeName(el.innerHTML);
+          return norms.some(x => n.includes(x));
+        })
         .map(el => el.closest('.fc-event, .fc-list-event'))
         .filter(Boolean);
+    }
 
+    function applyHighlight(targets) {
       targets.forEach(el => {
         el.classList.remove('flash-highlight');
-        // restart animation
         void el.offsetWidth;
         el.classList.add('flash-highlight');
-        setTimeout(() => { if (el) el.classList.remove('flash-highlight'); }, 3500);
+        setTimeout(() => { el && el.classList.remove('flash-highlight'); }, 3500);
       });
-    };
+    }
 
-    // Smooth scroll to the agenda
-    calendarEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Mobile/list view: manual offset scrolling (needed because list items sit near top edge)
+    function scrollWithOffset(el) {
+      const OFFSET = 96; // leave space above
+      const rect = el.getBoundingClientRect();
+      let top = window.scrollY + rect.top - OFFSET;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (top < 0) top = 0;
+      if (top > maxScroll) top = maxScroll;
+      window.scrollTo({ top, behavior: 'smooth' });
+      // Single correction only if element ends up clipped (avoid desktop jump issue)
+      setTimeout(() => {
+        const r = el.getBoundingClientRect();
+        if (r.top < 8 || r.bottom > window.innerHeight - 8) {
+          const newTop = window.scrollY + r.top - OFFSET;
+            window.scrollTo({ top: Math.max(0, newTop), behavior: 'auto' });
+        }
+      }, 260);
+    }
 
-    // small delay to allow scroll and potential layout adjustments
-    setTimeout(doHighlight, 350);
+    // Desktop/timeGrid: rely on native centering (no correction passes to prevent jump)
+    function scrollCentered(el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Small delay to allow FC to finish any layout after image row click
+    setTimeout(() => {
+      const targets = findTargets();
+      applyHighlight(targets);
+      const first = targets[0];
+      if (first) {
+        if (isListView || isMobile) {
+          scrollWithOffset(first);
+        } else {
+          scrollCentered(first);
+        }
+      } else {
+        calendarEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
   }
 
   function initScroller(mountEl, content, opts, titlesByPresenter) {
