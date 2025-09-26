@@ -27,7 +27,7 @@
     4: {
       "1": { link: "sessions/ingrid", title: "Find Your Message", subTitle: "See the big picture of your business", presenter: "Ingrid Lill", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
       "2": { link: "sessions/emergence", title: "The Emergence of “Idea Emergence“", subTitle: "How sketches and links help ideas surface—and stick.", presenter: "Nick Milo", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
-      "3": { link: "sessions/recap",  title: "Recap, Thank You, and Fairwell", subTitle: "A Visual Summary of the Conference",  presenter: "Zsolt Viczián", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" }
+      "3": { link: "sessions/recap",  title: "Recap, Thank You, and Farewell", subTitle: "A Visual Summary of the Conference",  presenter: "Zsolt Viczián", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" }
     }
   };
 })();
