@@ -45,6 +45,9 @@
         <span class="accent">Come share, discover, inspire, connect, and grow.</span>
       </p>
     </div>
+    <button id="registration-note" type="button" aria-label="Register for Sketch Your Mind Conference" onclick="window.open('https://events.ringcentral.com/events/sketch-your-mind-conference', '_blank', 'noopener');">Register Now!</button>
+    <br>
+    <br>
     <img class="decoration" src="assets/presentation.png" alt="Presenting at the conference" />
     <!--<div id="Ax6W40UyWSpuLFxl8VHyQkQuE" class="hopin-container"></div>
       <script>
@@ -58,7 +61,7 @@
       </script>-->
     <div id="calendar"></div>
     <div id="info-message"></div>
-    <button id="registration-note" type="button" aria-label="Register for Sketch Your Mind Conference">Register Now!</button>
+    <button id="registration-note" type="button" aria-label="Register for Sketch Your Mind Conference" onclick="window.open('https://events.ringcentral.com/events/sketch-your-mind-conference', '_blank', 'noopener');">Register Now!</button>
   </div>
 
   <!-- Configure the presenters shown in the photo scroller -->
@@ -210,14 +213,7 @@
 
       calendar.render();
 
-      // Replace inline time zone message construction with utility
       document.getElementById('info-message').innerHTML = timeZoneMessage();
-
-      // Removed old textContent assignment. Add click handler for registration.
-      var regBtn = document.getElementById('registration-note');
-      regBtn.addEventListener('click', function() {
-        window.open('https://events.ringcentral.com/events/sketch-your-mind-conference', '_blank', 'noopener');
-      });
     });
   </script>
 

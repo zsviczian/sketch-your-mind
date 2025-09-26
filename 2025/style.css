@@ -86,7 +86,8 @@ img.decoration {
     color: #0D2B2F;
     border-radius: 8px;
     padding: 12px 20px;
-    max-width: 700px;
+    width: 400px;
+    max-width: 100%;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     /* Make button look like the previous static panel */
     appearance: none;
