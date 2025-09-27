@@ -5,7 +5,7 @@
     0: {
       "1": { link:"sessions/sym", title: "Welcome to Sketch Your Mind", subTitle: "Turning Notes into a Playground of Ideas", presenter: "Zsolt Viczián", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference"},
       "2": { link:"sessions/nicole", title: "One year later...", subTitle: "after having changed all my Obsidian templates to Excalidraw hybrid notes", presenter: "Nicole van der Hoeven", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
-      "3": { link:"sessions/gamestorming", title: "Gamestorming", subTitle: "Playful visual frameworks to navigate uncertainty and align faster.", presenter: "Dave Gray", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" }
+      "3": { link:"sessions/gamestorming", title: "Gamestorming 2.0", subTitle: "Playful visual frameworks to navigate uncertainty and align faster.", presenter: "Dave Gray", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" }
     },
     1: {
       "0": { link: "sessions/ai", title: "Structuring Your Visuals for AI", subTitle: "The Logical Sketchnote", presenter: "Jihyun 'Jilly' Lee", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
