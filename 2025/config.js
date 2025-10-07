@@ -17,7 +17,7 @@
       "0": { link: "sessions/brandy", title: "Fuel Flow State with Visual Notetaking", subTitle: "Sharpen your attention skills and fall in love with focus", presenter: "Brandy Agerbeck", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
       "1": { link: "sessions/janis",   title: "Explain Ideas Visually",  subTitle: "Turn ideas into visuals people instantly “get.”",  presenter: "Janis Ozolins", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
       "2": { link: "sessions/genius",   title: "Drawing Out Your Genius",  subTitle: "Use Visual Thinking to Sell Ideas, Drive Buy-in, and Lead Change", presenter: "Lisa Rothstein", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
-      "3": { link:"sessions/ole", title: "System Visualization", subTitle: "Map Your Mess - Cluster, Distill, Sketch, and Engage", presenter: "Ole Qvist-Sørensen", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" }
+      "3": { link:"sessions/ole", title: "System Visualization: Map Your Mess", subTitle: "Cluster, Distill, Sketch, and Engage", presenter: "Ole Qvist-Sørensen", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" }
     },
     3: {
        "1": { link: "sessions/jorge",     title: "How I Write My Books", subTitle: "Visual Structures that Help You Think", presenter: "Jorge Arango", registrationLink: "https://events.ringcentral.com/events/sketch-your-mind-conference" },
