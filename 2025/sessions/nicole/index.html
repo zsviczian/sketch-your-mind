@@ -78,6 +78,48 @@
         </div>
       </section>
 
+      <section class="video-section" aria-labelledby="session-video-title">
+        <h2 id="session-video-title" class="section-title">Watch the Session</h2>
+        <div class="video-frame u-glow-gold">
+          <iframe
+            src="https://www.youtube.com/embed/rbRtx-sj6T4"
+            title="Sketch Your Mind — Session Recording"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="session-summary-title">
+        <h2 id="session-summary-title" class="section-title">Session Summary</h2>
+        <p>Nicole van der Hoeven is a Developer Advocate and content creator. She details the evolution of her personal knowledge management (PKM) workflow over the past year. Driven by an interest in more visual thinking—despite her initial preference for text—she successfully transitioned all her Obsidian note templates to a <strong>hybrid format</strong>, integrating the Excalidraw visual tool.</p>
+        <p>The core insight is that making the visual component the <strong>default setting</strong> for every note drastically reduced the friction of visual thinking. By using a hybrid template in Obsidian—supported by the Templater and Excalidraw plugins—each new note automatically includes both a Markdown (textual) side and an Excalidraw (visual) side, easily toggled via a hotkey. This approach eliminated the mental hurdle of deciding whether a note “deserved” a visual component, making visual notetaking an effortless habit.</p>
+
+        <h3>Key Workflow Insights: The Forward and Backward Process</h3>
+        <p>Nicole's workflow is organized around two complementary directions of thinking:</p>
+        <ol>
+          <li><strong>Going Forward (Composition):</strong> Assembling smaller, individual notes into larger, more complex visual concepts. For instance, a detailed note on "Telemetry Collectors" can be embedded as a visual component in a higher-level "Observability" map. This forms a "bottom-up" construction of knowledge.</li>
+          <li><strong>Going Backward (Deconstruction/Library Building):</strong> Breaking down complex visuals into their constituent parts and managing them as reusable building blocks.</li>
+        </ol>
+        <p>This "backward" process is where visual elements gain the power of a textual PKM system. Nicole maintains an <strong>Icon Library</strong>—dynamically generated via a JavaScript script—where individual visual elements (icons, simple drawings) are stored as image files. The crucial advantage is that when an icon is used in a larger Excalidraw note, Obsidian’s native backlinking tracks its usage. This means that visual concepts are treated like conceptual notes; opening an icon file immediately shows everywhere that concept has been used, even without creating a dedicated textual note for it. She sources her icons primarily from flaticon.com, preferring SVGs because the Excalidraw "Shade Master" script allows for easy skinning and color changes to maintain a cohesive look.</p>
+
+        <h3>Practical Application and Innovation</h3>
+        <ul>
+          <li><strong>Conference Mapping:</strong> Nicole uses a single, large Excalidraw as a "visual hub" for entire conferences, embedding screenshots of the schedule, PDFs of slides, and photos of attendees (tagged to link to individual "person notes"). This provides a comprehensive, visual timeline of the event.</li>
+          <li><strong>Deconstruction:</strong> For complex, externally defined topics (like a software architecture diagram), she works "top-down," taking a base visual and linking individual components (e.g., a "Query Frontend") to separate, detailed hybrid notes.</li>
+          <li><strong>"Audible Thinking":</strong> For dense reading materials (like <em>Thinking Fast and Slow</em>), she supplements visual and textual notes with <strong>voice notes</strong> that are immediately transcribed. The resulting transcript makes the audio recording searchable, much like the text within Excalidraw drawings is searchable because it’s saved as plain text.</li>
+          <li><strong>PKM Monitoring (The Geeky Side Track):</strong> In her most innovative application, Nicole treats her entire note vault as a computer system to be monitored. She uses a Python script, a Loki database, and a Grafana dashboard to visualize her PKM activity over time—tracking metrics like the number of new notes, recently updated notes, and eventually, link density. This creates a dashboard for "monitoring her own knowledge system."</li>
+        </ul>
+
+        <h3>Resources</h3>
+        <ul>
+          <li>🗺️ <a href="https://link.excalidraw.com/readonly/eTwaLHae7kbyIpXKkS3d" target="_blank" rel="noopener">Visual Summary of the conference</a></li>
+          <li>📄 <a href="https://nicolevanderhoeven.com/blog/20251013-how-i-use-visuals-in-my-pkm/" target="_blank" rel="noopener">Nicole's blog post about the session</a></li>
+        </ul>
+      </section>
+      </section>
+
       <a class="back-link" href="../../">&#8592; Back to schedule</a>
     </main>
   </div>
